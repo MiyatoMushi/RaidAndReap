@@ -19043,7 +19043,7 @@ EdgeCollider2D:
   - {x: -6.9687595, y: -4.467894}
   - {x: -6.499889, y: -4.93804}
   - {x: 6.49915, y: -4.9372215}
-  - {x: 6.9679527, y: -4.46938}
+  - {x: 6.9679523, y: -4.46589}
   - {x: 6.9681377, y: 2.0635538}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -19221,6 +19221,7 @@ GameObject:
   - component: {fileID: 1404610000}
   - component: {fileID: 1404610002}
   - component: {fileID: 1404610003}
+  - component: {fileID: 1404610004}
   m_Layer: 0
   m_Name: Player_Visuals
   m_TagString: Untagged
@@ -19288,7 +19289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404609997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6160305, y: -0.66369915, z: -0.07236131}
+  m_LocalPosition: {x: -0, y: 0.004, z: -0.07236131}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19333,6 +19334,32 @@ MonoBehaviour:
   idleUp: {fileID: 1047588965, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
   idleLeft: {fileID: 636970526, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
   idleRight: {fileID: -703075688, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
+--- !u!61 &1404610004
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404609997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0004913807, y: -0.33181095}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.30925667, y: 0.14741945}
+  m_EdgeRadius: 0
 --- !u!1 &1512887007
 GameObject:
   m_ObjectHideFlags: 0
