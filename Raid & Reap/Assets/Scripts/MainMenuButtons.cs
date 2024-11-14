@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void NewButton() {
         mainMenuButtonSound.Play();
+        SceneManager.LoadScene("PlayerFarm");
     }
 
     public void LoadButton() {
