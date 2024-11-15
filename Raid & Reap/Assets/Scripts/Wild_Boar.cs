@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Wild_Boar : MonoBehaviour
 {
     public float speed;
     private float waitTime;
@@ -15,8 +15,10 @@ public class Slime : MonoBehaviour
     public float maxY;
 
     public float detectionRange; 
-    public float attackRange;    
+    public float attackRange;   
     private Transform player;    
+
+    private bool isHostile = false; 
     private bool isAttacking = false; 
 
     private void Start()
@@ -24,7 +26,7 @@ public class Slime : MonoBehaviour
         waitTime = startWaitTime;
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
-   
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -42,13 +44,20 @@ public class Slime : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= attackRange)
+        if (isHostile)
         {
-            AttackPlayer();
-        }
-        else if (distanceToPlayer <= detectionRange)
-        {
-            ChasePlayer();
+            if (distanceToPlayer <= attackRange)
+            {
+                AttackPlayer();
+            }
+            else if (distanceToPlayer <= detectionRange)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                StopBeingHostile();
+            }
         }
         else
         {
@@ -84,7 +93,7 @@ public class Slime : MonoBehaviour
         if (!isAttacking)
         {
             isAttacking = true;
-            Debug.Log("Slime is attacking the player!");
+            Debug.Log("Boar is attacking the player!");
             // Add attack logic reduce player's health
             StartCoroutine(ResetAttack());
         }
@@ -96,6 +105,20 @@ public class Slime : MonoBehaviour
         isAttacking = false;
     }
 
+    public void BecomeHostile()
+    {
+ 
+        isHostile = true;
+        Debug.Log("Boar has become hostile!");
+    }
+
+    private void StopBeingHostile()
+    {
+       
+        isHostile = false;
+        Debug.Log("Boar has calmed down and returned to neutral.");
+    }
+
     private void OnDrawGizmosSelected()
     {
         // Visual guide para sa range 
@@ -104,5 +127,16 @@ public class Slime : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // player's attack triggers this collision
+            // Replace this with proper check if the player has attacked
+            BecomeHostile();
+        }
     }
 }
