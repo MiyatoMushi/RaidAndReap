@@ -6,22 +6,27 @@ using UnityEngine.UI;
 public class NPC_Friendly : MonoBehaviour
 {
     public string[] messages;
-    public float interactionRange = 2f; 
-    private Transform player; 
+    public float interactionRange = 2f;
+    private Transform player;
 
     public GameObject interactionIcon;
-    public TextMeshProUGUI messageText; 
-    public Button interactionButton; 
+    public TextMeshProUGUI messageText;
+    public Button interactionButton;
     private bool isPlayerInRange = false;
 
-    public float messageDuration = 3f;
+    public GameObject messageBackground;
+    public float slideDuration;
+    public float leaveCountdown; 
 
-    public GameObject messageBackground; 
-    public float slideDuration = 1f; 
+    public Sprite defaultButtonIcon;
+    public Sprite interactButtonIcon;
+
+    private Coroutine slideCoroutine;
+    private Coroutine countdownCoroutine;
+    private bool isMessageDisplayed = false;
 
     private void Start()
     {
-
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -34,14 +39,13 @@ public class NPC_Friendly : MonoBehaviour
 
         if (interactionButton != null)
         {
-            interactionButton.gameObject.SetActive(false); 
-            interactionButton.onClick.AddListener(InteractWithPlayer);
+            UpdateButtonIcon(defaultButtonIcon);
+            interactionButton.onClick.AddListener(DefaultButtonFunction);
         }
         else
         {
             Debug.LogError("Interaction button not assigned in the Inspector.");
         }
-
 
         if (interactionIcon != null)
         {
@@ -55,14 +59,13 @@ public class NPC_Friendly : MonoBehaviour
 
         if (messageBackground != null)
         {
-            messageBackground.SetActive(false); 
+            messageBackground.SetActive(false);
         }
     }
 
     private void Update()
     {
         if (player == null) return;
-
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer <= interactionRange)
@@ -71,7 +74,14 @@ public class NPC_Friendly : MonoBehaviour
             {
                 isPlayerInRange = true;
                 ShowInteractionIcon();
-                ShowInteractionButton(); 
+                UpdateButtonIcon(interactButtonIcon);
+                ChangeButtonFunction(InteractWithPlayer);
+
+                if (countdownCoroutine != null)
+                {
+                    StopCoroutine(countdownCoroutine);
+                    countdownCoroutine = null;
+                }
             }
         }
         else
@@ -80,8 +90,13 @@ public class NPC_Friendly : MonoBehaviour
             {
                 isPlayerInRange = false;
                 HideInteractionIcon();
-                HideInteractionButton();
-                HideMessage();
+                UpdateButtonIcon(defaultButtonIcon);
+                ChangeButtonFunction(DefaultButtonFunction);
+
+                if (isMessageDisplayed && countdownCoroutine == null)
+                {
+                    countdownCoroutine = StartCoroutine(CloseMessageAfterCountdown());
+                }
             }
         }
     }
@@ -102,19 +117,20 @@ public class NPC_Friendly : MonoBehaviour
         }
     }
 
-    private void ShowInteractionButton()
+    private void UpdateButtonIcon(Sprite icon)
     {
-        if (interactionButton != null)
+        if (interactionButton != null && interactionButton.GetComponent<Image>() != null)
         {
-            interactionButton.gameObject.SetActive(true); 
+            interactionButton.GetComponent<Image>().sprite = icon;
         }
     }
 
-    private void HideInteractionButton()
+    private void ChangeButtonFunction(UnityEngine.Events.UnityAction newFunction)
     {
         if (interactionButton != null)
         {
-            interactionButton.gameObject.SetActive(false);
+            interactionButton.onClick.RemoveAllListeners();
+            interactionButton.onClick.AddListener(newFunction);
         }
     }
 
@@ -123,7 +139,7 @@ public class NPC_Friendly : MonoBehaviour
         if (messageText != null)
         {
             messageText.gameObject.SetActive(true);
-            messageText.text = message; 
+            messageText.text = message;
         }
 
         if (messageBackground != null)
@@ -131,10 +147,31 @@ public class NPC_Friendly : MonoBehaviour
             messageBackground.SetActive(true);
         }
 
-        StartCoroutine(SlideDownMessageAndBackground());
+        if (interactionButton != null)
+        {
+            interactionButton.interactable = false; 
+        }
+
+        if (slideCoroutine != null)
+        {
+            StopCoroutine(slideCoroutine); 
+        }
+
+        slideCoroutine = StartCoroutine(SlideDownMessageAndBackground());
     }
 
     private void HideMessage()
+    {
+        if (slideCoroutine != null)
+        {
+            StopCoroutine(slideCoroutine);
+            slideCoroutine = null;
+        }
+
+        HideMessageImmediately();
+    }
+
+    private void HideMessageImmediately()
     {
         if (messageText != null)
         {
@@ -145,6 +182,32 @@ public class NPC_Friendly : MonoBehaviour
         {
             messageBackground.SetActive(false);
         }
+
+        if (interactionButton != null)
+        {
+            interactionButton.interactable = true; 
+        }
+
+        isMessageDisplayed = false;
+    }
+
+    private IEnumerator CloseMessageAfterCountdown()
+    {
+        float countdown = leaveCountdown;
+        while (countdown > 0f)
+        {
+            countdown -= Time.deltaTime;
+            yield return null;
+
+           
+            if (isPlayerInRange)
+            {
+                yield break;
+            }
+        }
+
+        HideMessage();
+        countdownCoroutine = null;
     }
 
     private void InteractWithPlayer()
@@ -154,11 +217,7 @@ public class NPC_Friendly : MonoBehaviour
             string randomMessage = messages[Random.Range(0, messages.Length)];
             Debug.Log("NPC says: " + randomMessage);
 
-
             ShowMessage(randomMessage);
-
-
-            StartCoroutine(HideMessageAfterTime(messageDuration));
         }
         else
         {
@@ -166,14 +225,20 @@ public class NPC_Friendly : MonoBehaviour
         }
     }
 
+    private void DefaultButtonFunction()
+    {
+        Debug.Log("Default button function executed.");
+    }
+
     private IEnumerator SlideDownMessageAndBackground()
     {
-        Vector3 initialPosition = new Vector3(messageText.transform.position.x, messageText.transform.position.y + 400f, messageText.transform.position.z); // Start above NPC
-        Vector3 targetPosition = new Vector3(messageText.transform.position.x, messageText.transform.position.y, messageText.transform.position.z); // Final position (just above NPC)
-
+        Vector3 initialPosition = new Vector3(messageText.transform.position.x, messageText.transform.position.y + 400f, messageText.transform.position.z);
+        Vector3 targetPosition = new Vector3(messageText.transform.position.x, messageText.transform.position.y, messageText.transform.position.z);
 
         messageText.transform.position = initialPosition;
         messageBackground.transform.position = initialPosition;
+
+        isMessageDisplayed = true;
 
         float elapsedTime = 0f;
         while (elapsedTime < slideDuration)
@@ -185,21 +250,19 @@ public class NPC_Friendly : MonoBehaviour
             yield return null;
         }
 
-
         messageText.transform.position = targetPosition;
         messageBackground.transform.position = targetPosition;
-    }
 
-
-    private IEnumerator HideMessageAfterTime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        HideMessage(); 
+        if (interactionButton != null)
+        {
+            interactionButton.interactable = true; 
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Visual guide para sa range 
+
+        // visual guide para sa range
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
