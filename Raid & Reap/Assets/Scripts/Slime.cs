@@ -17,7 +17,9 @@ public class Slime : MonoBehaviour
     public float detectionRange; 
     public float attackRange;    
     private Transform player;    
-    private bool isAttacking = false; 
+    private bool isAttacking = false;
+    public Animator animator;
+
 
     private void Start()
     {
@@ -38,6 +40,8 @@ public class Slime : MonoBehaviour
 
     private void Update()
     {
+        Vector3 direction = Vector3.zero; 
+
         if (player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -45,14 +49,36 @@ public class Slime : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             AttackPlayer();
+            direction = player.position - transform.position; 
         }
         else if (distanceToPlayer <= detectionRange)
         {
+            direction = player.position - transform.position; 
             ChasePlayer();
         }
         else
         {
+            direction = moveSpot.position - transform.position; 
             Patrol();
+        }
+
+        AnimateMovement(direction.normalized); 
+    }
+
+   
+
+
+    void AnimateMovement(Vector3 direction) {
+        if (animator != null) {
+            if (direction.magnitude > 0)
+            {
+                animator.SetBool("IsMoving", true);
+                animator.SetFloat("Horizontal", direction.x);
+                animator.SetFloat("Vertical", direction.y);
+            }
+            else {
+                animator.SetBool("IsMoving", false);
+            }
         }
     }
 

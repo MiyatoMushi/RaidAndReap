@@ -125,6 +125,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2995,7 +3007,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      world_tilemap_1_6: 734545438
+      world_tilemap_1_17: -172346595
       world_tilemap_1_134: -1057664287
       world_tilemap_1_110: -754788893
       world_tilemap_1_81: 70515634
@@ -3023,16 +3035,16 @@ TextureImporter:
       world_tilemap_1_90: -1073697878
       world_tilemap_1_0: 1434185445
       world_tilemap_1_109: -2104715365
-      world_tilemap_1_118: 762751909
-      world_tilemap_1_45: -1208965108
-      world_tilemap_1_133: -166427628
       world_tilemap_1_56: -720118373
-      world_tilemap_1_125: -1952465867
-      world_tilemap_1_41: -1525651916
-      world_tilemap_1_113: 178769733
       world_tilemap_1_131: 2080937904
-      world_tilemap_1_69: 1332421370
+      world_tilemap_1_133: -166427628
+      world_tilemap_1_45: -1208965108
+      world_tilemap_1_118: 762751909
+      world_tilemap_1_125: -1952465867
+      world_tilemap_1_113: 178769733
       world_tilemap_1_73: 1361121988
+      world_tilemap_1_69: 1332421370
+      world_tilemap_1_41: -1525651916
       world_tilemap_1_117: 1671782514
       world_tilemap_1_21: 150720878
       world_tilemap_1_105: -577555162
@@ -3128,9 +3140,9 @@ TextureImporter:
       world_tilemap_1_97: -393881785
       world_tilemap_1_27: 2003379276
       world_tilemap_1_37: -2126665311
-      world_tilemap_1_68: 1479147146
       world_tilemap_1_23: -1884708755
-      world_tilemap_1_17: -172346595
+      world_tilemap_1_68: 1479147146
+      world_tilemap_1_6: 734545438
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
