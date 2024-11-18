@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AdaptivePerformance.Editor.Metadata;
 using UnityEngine;
 
 public class Slime : MonoBehaviour
@@ -112,6 +113,7 @@ public class Slime : MonoBehaviour
             isAttacking = true;
             Debug.Log("Slime is attacking the player!");
             // Add attack logic reduce player's health
+            PlayerStats.PlayerHealth -= 10;
             StartCoroutine(ResetAttack());
         }
     }
