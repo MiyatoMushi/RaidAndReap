@@ -832,6 +832,7 @@ GameObject:
   - component: {fileID: 297185978}
   - component: {fileID: 297185977}
   - component: {fileID: 297185979}
+  - component: {fileID: 297185980}
   m_Layer: 0
   m_Name: 2nd_Ground
   m_TagString: Untagged
@@ -1716,6 +1717,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!19719996 &297185980
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297185975}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
 --- !u!1 &447452048
 GameObject:
   m_ObjectHideFlags: 0
@@ -20112,6 +20129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8248046439361890265, guid: 068fcb82a1afd0a4aa2f63681b96f098, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4baedd87bd1f0a24caf2ad202968e913, type: 3}
     - target: {fileID: 8248046439361890270, guid: 068fcb82a1afd0a4aa2f63681b96f098, type: 3}
       propertyPath: m_Name
       value: BackgroundMusic
