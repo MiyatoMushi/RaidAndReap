@@ -543,10 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 675825787}
-  footstepWood: {fileID: 8300000, guid: beec18a941c4f7a4191bd035b7aa8200, type: 3}
-  footstepStone: {fileID: 0}
-  footstepSoil: {fileID: 0}
-  footstepGrass: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: beec18a941c4f7a4191bd035b7aa8200, type: 3}
   pitchVariation: 0.1
   volumeVariation: 0.1
 --- !u!1 &685422868

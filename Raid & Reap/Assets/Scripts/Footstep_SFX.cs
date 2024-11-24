@@ -5,10 +5,7 @@ using UnityEngine;
 public class Footstep_SFX : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip footstepWood;
-    public AudioClip footstepStone;
-    public AudioClip footstepSoil;
-    public AudioClip footstepGrass;
+    public AudioClip footstepSound;
 
     //For changing Pitch / Volume, para maging Dynamic medyo ung sounds
     public float pitchVariation = 0.1f;
@@ -41,8 +38,8 @@ public class Footstep_SFX : MonoBehaviour
     {
         if (playerInTrigger && playerRigidbody != null)
         {
-            // Check if the player is moving
-            if (playerRigidbody.velocity.magnitude > 0.1f) // Adjust threshold as needed
+            //Check if the player is moving
+            if (playerRigidbody.velocity.magnitude > 0.1f) //Adjust threshold as needed
             {
                 if (!audioSource.isPlaying)
                 {
@@ -51,7 +48,7 @@ public class Footstep_SFX : MonoBehaviour
             }
             else
             {
-                // Stop the sound when the player is not moving
+                //Stop the sound when the player is not moving
                 if (audioSource.isPlaying)
                 {
                     audioSource.Stop();
@@ -64,7 +61,7 @@ public class Footstep_SFX : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInTrigger = true; // Player is within the trigger area
+            playerInTrigger = true; //Player is within the trigger area
         }
     }
 
@@ -72,21 +69,21 @@ public class Footstep_SFX : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInTrigger = false; // Player has left the trigger area
+            playerInTrigger = false; //Player has left the trigger area
             if (audioSource.isPlaying)
             {
-                audioSource.Stop(); // Stop sound when player leaves the area
+                audioSource.Stop(); //Stop sound when player leaves the area
             }
         }
     }
 
     void PlayDynamicFootstep()
     {
-        // Adjust pitch and volume dynamically
+        //Adjust pitch and volume dynamically
         audioSource.pitch = Random.Range(1.0f - pitchVariation, 1.0f + pitchVariation);
         audioSource.volume = Random.Range(1.0f - volumeVariation, 1.0f);
-        audioSource.clip = footstepWood;
-        audioSource.loop = true; // Keep the sound looping while moving
+        audioSource.clip = footstepSound;
+        audioSource.loop = true; //Keep the sound looping while moving
         audioSource.Play();
     }
 }
