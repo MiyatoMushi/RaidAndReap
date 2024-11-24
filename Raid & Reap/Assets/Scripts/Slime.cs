@@ -85,20 +85,29 @@ public class Slime : MonoBehaviour
 
     private void Patrol()
     {
-        transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);
-
-        if (Vector2.Distance(transform.position, moveSpot.position) < 0.2f)
+        if (Vector2.Distance(transform.position, moveSpot.position) > 0.2f) 
         {
-            if (waitTime <= 0)
-            {
-                waitTime = startWaitTime;
-                moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
+            // NPC is moving
+            PlayerStats.slimeIsMoving = true; 
+            transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);
         }
+        else
+        {
+        // NPC is stationary (waiting)
+        PlayerStats.slimeIsMoving = false; 
+
+        if (waitTime <= 0)
+        {
+            waitTime = startWaitTime;
+            moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        }
+        else
+        {
+            waitTime -= Time.deltaTime;
+        }
+    }
+
+    Debug.Log($"NPC isMoving: {PlayerStats.slimeIsMoving}"); // Debug log for testing
     }
 
     private void ChasePlayer()

@@ -49561,6 +49561,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3887036202665656864, guid: c63194a8302f4e34ab4256ec50afe11d, type: 3}
+      propertyPath: npcType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5057838285667897929, guid: c63194a8302f4e34ab4256ec50afe11d, type: 3}
       propertyPath: m_Name
       value: Wild_Boar
