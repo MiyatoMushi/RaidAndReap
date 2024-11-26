@@ -10495,6 +10495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16591a6c455982d47b7af48ac4893076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hourText: {fileID: 5015569722169305865}
+  minuteText: {fileID: 5075851519209531573}
   rnrHourDisplay: 6
   rnrMinuteDisplay: 0
 --- !u!1 &6893485636613194821

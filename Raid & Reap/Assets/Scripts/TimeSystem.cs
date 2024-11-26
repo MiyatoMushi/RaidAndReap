@@ -6,47 +6,47 @@ using TMPro;
 public class TimeSystem : MonoBehaviour
 {
     //Text
-    //public TextMeshProUGUI rnrHourDisplay;
-    //public TextMeshProUGUI rnrMinuteDisplay;
+    public TextMeshProUGUI hourText;
+    public TextMeshProUGUI minuteText;
 
-    //Base Time Variables - JC
-    public int rnrHourDisplay = 6;
-    public int rnrMinuteDisplay = 0;
+    // Time Variables
+    public int rnrHourDisplay = 6; // Starting hour
+    public int rnrMinuteDisplay = 0; // Starting minute
 
-    private int rnrMaxHour = 20;
-    private int rnrMaxMin = 60;
+    private int rnrMaxHour = 20; // Maximum hour limit
+    private int rnrMaxMin = 60; // Maximum minute limit
     private float rnrTimer = 0f;
-
-    /* Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    */
 
     // Update is called once per frame
     void Update()
     {
         rnrTimer += Time.deltaTime;
 
-        if (rnrTimer < rnrMaxMin) {
-            IncreementTime();
-        } else if (rnrTimer == 61) {
-            rnrTimer = 0;
+        // Increment time every 1 second
+        if (rnrTimer >= 10f)
+        {
+            IncrementTime();
+            rnrTimer = 0f; // Reset the timer
         }
     }
 
-    void IncreementTime() {
-        if (rnrHourDisplay < rnrMaxHour) {
-            if (rnrMinuteDisplay < rnrMaxMin) {
-                rnrMinuteDisplay ++;
+    void IncrementTime()
+    {
+        rnrMinuteDisplay += 10; // Increment minutes
+        minuteText.text = rnrMinuteDisplay.ToString();
+
+        if (rnrMinuteDisplay >= rnrMaxMin)
+        {
+            rnrMinuteDisplay = 0; // Reset minutes
+            minuteText.text = "00";
+            rnrHourDisplay++; // Increment hours
+            hourText.text = rnrHourDisplay.ToString();
+
+            if (rnrHourDisplay >= rnrMaxHour)
+            {
+                rnrHourDisplay = 6; // Reset hours to start value
+                hourText.text = rnrHourDisplay.ToString();
             }
-            else if (rnrMinuteDisplay == rnrMaxHour) {
-                rnrMinuteDisplay = 0;
-                rnrHourDisplay++;
-            }
-        } else if (rnrHourDisplay == rnrMaxHour) {
-            rnrHourDisplay = 6;
         }
     }
 }
