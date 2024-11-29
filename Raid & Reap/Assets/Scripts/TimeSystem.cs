@@ -10,42 +10,62 @@ public class TimeSystem : MonoBehaviour
     public TextMeshProUGUI minuteText;
 
     // Time Variables
-    public int rnrHourDisplay = 6; // Starting hour
-    public int rnrMinuteDisplay = 0; // Starting minute
-
     private int rnrMaxHour = 20; // Maximum hour limit
     private int rnrMaxMin = 60; // Maximum minute limit
-    private float rnrTimer = 0f;
+
+    void Start()
+    {
+        if (PlayerStats.rnrHourDisplay >= 10)
+        {
+            minuteText.text = PlayerStats.rnrMinuteDisplay.ToString();
+        }
+        else
+        {
+            hourText.text = "0" + PlayerStats.rnrHourDisplay.ToString();
+        }
+        
+        if (PlayerStats.rnrMinuteDisplay > 0 )
+        {
+            minuteText.text = PlayerStats.rnrMinuteDisplay.ToString();
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        rnrTimer += Time.deltaTime;
+        PlayerStats.rnrTimer += Time.deltaTime;
 
         // Increment time every 1 second
-        if (rnrTimer >= 10f)
+        if (PlayerStats.rnrTimer >= 10f)
         {
             IncrementTime();
-            rnrTimer = 0f; // Reset the timer
+            PlayerStats.rnrTimer = 0f; // Reset the timer
         }
     }
 
     void IncrementTime()
     {
-        rnrMinuteDisplay += 10; // Increment minutes
-        minuteText.text = rnrMinuteDisplay.ToString();
+        PlayerStats.rnrMinuteDisplay += 10; // Increment minutes
+        minuteText.text = PlayerStats.rnrMinuteDisplay.ToString();
 
-        if (rnrMinuteDisplay >= rnrMaxMin)
+        if (PlayerStats.rnrMinuteDisplay >= rnrMaxMin)
         {
-            rnrMinuteDisplay = 0; // Reset minutes
+            PlayerStats.rnrMinuteDisplay = 0; // Reset minutes
             minuteText.text = "00";
-            rnrHourDisplay++; // Increment hours
-            hourText.text = rnrHourDisplay.ToString();
-
-            if (rnrHourDisplay >= rnrMaxHour)
+            PlayerStats.rnrHourDisplay++; // Increment hours
+            if (PlayerStats.rnrHourDisplay >= 10)
             {
-                rnrHourDisplay = 6; // Reset hours to start value
-                hourText.text = rnrHourDisplay.ToString();
+                hourText.text = PlayerStats.rnrHourDisplay.ToString();
+            }
+            else
+            {
+                hourText.text = "0" + PlayerStats.rnrHourDisplay.ToString();
+            }  
+
+            if (PlayerStats.rnrHourDisplay >= rnrMaxHour)
+            {
+                PlayerStats.rnrHourDisplay = 6; // Reset hours to start value
+                hourText.text = PlayerStats.rnrHourDisplay.ToString();
             }
         }
     }

@@ -10,6 +10,10 @@ public static class PlayerStats
     public static bool slimeIsMoving = false;
     public static bool boarIsMoving = false;
 
+    public static int rnrHourDisplay = 6;
+    public static int rnrMinuteDisplay = 0;
+    public static float rnrTimer = 0f;
+
 
     public static void PlayerResets(){
         PlayerHealth = 100;
