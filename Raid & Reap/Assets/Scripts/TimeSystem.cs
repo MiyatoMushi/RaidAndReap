@@ -33,10 +33,13 @@ public class TimeSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerStats.rnrTimer += Time.deltaTime;
+        if (PlayerStats.rnrDay == true || PlayerStats.rnrDay == false && PlayerStats.rnrHourDisplay != 12)
+        {
+            PlayerStats.rnrTimer += Time.deltaTime;
+        }
 
         // Increment time every 1 second
-        if (PlayerStats.rnrTimer >= 10f)
+        if (PlayerStats.rnrTimer >= 1f)
         {
             IncrementTime();
             PlayerStats.rnrTimer = 0f; // Reset the timer
@@ -53,6 +56,11 @@ public class TimeSystem : MonoBehaviour
             PlayerStats.rnrMinuteDisplay = 0; // Reset minutes
             minuteText.text = "00";
             PlayerStats.rnrHourDisplay++; // Increment hours
+            if (PlayerStats.rnrDay == true && PlayerStats.rnrHourDisplay > 12)
+            {
+                PlayerStats.rnrDay = false;
+                PlayerStats.rnrHourDisplay = 1;
+            }
             if (PlayerStats.rnrHourDisplay >= 10)
             {
                 hourText.text = PlayerStats.rnrHourDisplay.ToString();

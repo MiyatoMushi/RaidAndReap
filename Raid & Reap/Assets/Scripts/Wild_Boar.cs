@@ -104,6 +104,7 @@ public class Wild_Boar : MonoBehaviour
             isAttacking = true;
             Debug.Log("Boar is attacking the player!");
             // Add attack logic reduce player's health
+            PlayerStats.PlayerHealth -= 10;
             StartCoroutine(ResetAttack());
         }
     }

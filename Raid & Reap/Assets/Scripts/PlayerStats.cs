@@ -13,6 +13,7 @@ public static class PlayerStats
     public static int rnrHourDisplay = 6;
     public static int rnrMinuteDisplay = 0;
     public static float rnrTimer = 0f;
+    public static bool rnrDay = true;
 
 
     public static void PlayerResets(){

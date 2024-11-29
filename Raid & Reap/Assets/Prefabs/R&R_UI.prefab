@@ -3312,10 +3312,10 @@ RectTransform:
   m_Father: {fileID: 2438134501555280173}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -686.8, y: -298.2}
-  m_SizeDelta: {x: 418.7061, y: 398.9438}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 273.2, y: 241.79999}
+  m_SizeDelta: {x: 418.70605, y: 398.9438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2438134500377031962
 CanvasRenderer:
@@ -10497,8 +10497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hourText: {fileID: 5015569722169305865}
   minuteText: {fileID: 5075851519209531573}
-  rnrHourDisplay: 6
-  rnrMinuteDisplay: 0
 --- !u!1 &6893485636613194821
 GameObject:
   m_ObjectHideFlags: 0
