@@ -21,12 +21,16 @@ public class Slime : MonoBehaviour
     private bool isAttacking = false;
     public Animator animator;
 
+    private AudioSource soundSource;
+    public AudioClip playerHit;
+
 
     private void Start()
     {
         waitTime = startWaitTime;
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
+        soundSource = GetComponent<AudioSource>();
    
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -64,24 +68,62 @@ public class Slime : MonoBehaviour
         }
 
         AnimateMovement(direction.normalized); 
+    
     }
 
    
 
 
-    void AnimateMovement(Vector3 direction) {
-        if (animator != null) {
-            if (direction.magnitude > 0)
+    void AnimateMovement(Vector3 direction)
+    {
+        if (animator != null)
+        {
+            if (PlayerStats.slimeIsMoving)
             {
                 animator.SetBool("IsMoving", true);
-                animator.SetFloat("Horizontal", direction.x);
-                animator.SetFloat("Vertical", direction.y);
+
+                // Determine movement direction
+                string movementDirection = GetMovementDirection(direction);
+
+                // Use a switch to handle animation parameters
+                switch (movementDirection)
+                {
+                    case "Right":
+                        animator.SetFloat("Horizontal", 1);
+                        animator.SetFloat("Vertical", 0);
+                        break;
+
+                    case "Left":
+                        animator.SetFloat("Horizontal", -1);
+                        animator.SetFloat("Vertical", 0);
+                        break;
+
+                    default:
+                        // Default case for stationary or undefined
+                        animator.SetFloat("Horizontal", 0);
+                        animator.SetFloat("Vertical", 0);
+                        break;
+                }
             }
-            else {
+            else
+            {
                 animator.SetBool("IsMoving", false);
             }
         }
     }
+
+    string GetMovementDirection(Vector3 direction)
+    {
+        const float threshold = 0.1f; // To account for small floating-point variations
+
+        if (direction.x > threshold)
+            return "Right";
+        else if (direction.x < -threshold)
+            return "Left";
+        else
+            return "Stationary";
+    }
+
 
     private void Patrol()
     {
@@ -112,6 +154,7 @@ public class Slime : MonoBehaviour
 
     private void ChasePlayer()
     {
+        PlayerStats.slimeIsMoving = true;
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
 
@@ -123,6 +166,7 @@ public class Slime : MonoBehaviour
             Debug.Log("Slime is attacking the player!");
             // Add attack logic reduce player's health
             PlayerStats.PlayerHealth -= 10;
+            soundSource.PlayOneShot(playerHit);
             StartCoroutine(ResetAttack());
         }
     }

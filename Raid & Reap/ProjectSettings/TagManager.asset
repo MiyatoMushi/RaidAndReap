@@ -9,6 +9,7 @@ TagManager:
   - StoneGround
   - SoilGround
   - WoodGround
+  - PlayerRigidbody
   layers:
   - Default
   - TransparentFX

@@ -111,6 +111,7 @@ MonoBehaviour:
   detectionRange: 2
   attackRange: 0.4
   animator: {fileID: 756095714067036524}
+  playerHit: {fileID: 0}
 --- !u!58 &9047447938245743825
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32166fb14cc73c42b20aa3930489231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcType: 0
   detectionRange: 5
   soundClip: {fileID: 8300000, guid: 55536f1bdc3dd6946ad140766363c1c6, type: 3}
 --- !u!82 &4874122698737618642
