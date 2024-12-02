@@ -50887,6 +50887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5207310230921234729, guid: eebd0cc1a0b33824a9247e1c7c791ef7, type: 3}
+      propertyPath: playerHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 412b175af4398b446be8e32292970b55, type: 3}
     - target: {fileID: 6309620027057724415, guid: eebd0cc1a0b33824a9247e1c7c791ef7, type: 3}
       propertyPath: m_RootOrder
       value: 8
