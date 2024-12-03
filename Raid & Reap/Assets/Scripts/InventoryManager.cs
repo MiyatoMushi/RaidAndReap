@@ -8,10 +8,12 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
-    int selectedSlot = -1;
+    private int selectedSlot = -1;
 
-    void ChangeSelectedSlot(int newValue) {
-        if (selectedSlot >= 0) {
+    public void ChangeSelectedSlot(int newValue)
+    {
+        if (selectedSlot >= 0)
+        {
             inventorySlots[selectedSlot].Deselect();
         }
 
@@ -19,30 +21,34 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newValue;
     }
 
-    public void SpawnNewItem(Item item, InventorySlot slot) {
+    public void SpawnNewItem(Item item, InventorySlot slot)
+    {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
 
         inventoryItem.InitializeItem(item);
     }
 
-    public bool AddItem(Item item) {
-
-        for (int i = 0; i < inventorySlots.Length; i++) {
+    public bool AddItem(Item item)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot != null && itemInSlot.item == item && itemInSlot.itemCount < itemMaxStack) {
-                
+            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.itemCount < itemMaxStack)
+            {
                 itemInSlot.itemCount++;
                 itemInSlot.RefreshCount();
                 return true;
             }
         }
 
-        for (int i = 0; i < inventorySlots.Length; i++) {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot == null) {
+            if (itemInSlot == null)
+            {
                 SpawnNewItem(item, slot);
                 return true;
             }
@@ -51,7 +57,8 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public void RemoveItem(Item item) {
-
+    public void RemoveItem(Item item)
+    {
+        // Implementation of item removal (if needed)
     }
 }
