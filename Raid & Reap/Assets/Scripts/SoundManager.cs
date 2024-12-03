@@ -26,5 +26,9 @@ public class SoundManager : MonoBehaviour
         audioPlayer.Play();
     }
 
+    public void PlayButtonOneSound() {
+        audioPlayer.Play();
+    }
+
     
 }

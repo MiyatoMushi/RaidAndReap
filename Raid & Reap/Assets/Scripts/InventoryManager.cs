@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
     private int itemMaxStack = 99;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
+    public AudioSource audioSource;
+    public AudioClip selectSound;
 
     private int selectedSlot = -1;
 
@@ -19,6 +21,10 @@ public class InventoryManager : MonoBehaviour
 
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+        
+        if (audioSource != null && selectSound != null) {
+            audioSource.PlayOneShot(selectSound);
+        }
     }
 
     public void SpawnNewItem(Item item, InventorySlot slot)
