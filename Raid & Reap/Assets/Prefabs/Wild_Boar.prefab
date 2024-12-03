@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7651342947120251342}
   m_Layer: 0
   m_Name: Wild_Boar
-  m_TagString: Untagged
+  m_TagString: Boar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23dc1a908937cc74a88bb309d78a6f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   startWaitTime: 1.5
   moveSpot: {fileID: 5057838285991390583}
   minX: 2.3
@@ -173,6 +173,7 @@ MonoBehaviour:
   maxY: -1.51
   detectionRange: 2
   attackRange: 0.8
+  playerHit: {fileID: 8300000, guid: 412b175af4398b446be8e32292970b55, type: 3}
 --- !u!61 &5057838287201711025
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
+
     public float speed;
     private float waitTime;
     public float startWaitTime;
@@ -149,7 +150,6 @@ public class Slime : MonoBehaviour
         }
     }
 
-    Debug.Log($"NPC isMoving: {PlayerStats.slimeIsMoving}"); // Debug log for testing
     }
 
     private void ChasePlayer()

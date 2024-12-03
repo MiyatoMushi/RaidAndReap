@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wild_Boar : MonoBehaviour
 {
+
     public float speed;
     private float waitTime;
     public float startWaitTime;
@@ -21,11 +22,15 @@ public class Wild_Boar : MonoBehaviour
     private bool isHostile = false; 
     private bool isAttacking = false; 
 
+    private AudioSource soundSource;
+    public AudioClip playerHit;
+
     private void Start()
     {
         waitTime = startWaitTime;
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
+        soundSource = GetComponent<AudioSource>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -41,6 +46,13 @@ public class Wild_Boar : MonoBehaviour
     private void Update()
     {
         if (player == null) return;
+
+        if (PlayerStats.boarHealth <= 0){
+            Destroy(gameObject);
+        }
+        else if (PlayerStats.boarHealth <= 9){
+            ChasePlayer();
+        }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -89,7 +101,6 @@ public class Wild_Boar : MonoBehaviour
         }
     }
 
-    Debug.Log($"NPC isMoving: {PlayerStats.slimeIsMoving}"); // Debug log for testing
     }
 
     private void ChasePlayer()
@@ -104,6 +115,7 @@ public class Wild_Boar : MonoBehaviour
             isAttacking = true;
             Debug.Log("Boar is attacking the player!");
             // Add attack logic reduce player's health
+            soundSource.PlayOneShot(playerHit);
             PlayerStats.PlayerHealth -= 10;
             StartCoroutine(ResetAttack());
         }

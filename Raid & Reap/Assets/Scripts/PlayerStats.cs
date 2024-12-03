@@ -20,6 +20,8 @@ public static class PlayerStats
     public static float rnrTimer = 0f;
     public static string rnrDay = "AM";
 
+    public static int boarHealth = 10;
+
 
     public static void PlayerResets(){
         PlayerHealth = 100;
