@@ -11,6 +11,7 @@ TagManager:
   - WoodGround
   - PlayerRigidbody
   - Boar
+  - Enemy
   layers:
   - Default
   - TransparentFX

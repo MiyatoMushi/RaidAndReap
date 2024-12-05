@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NPC_Friendly : MonoBehaviour
 {
     public string[] messages;
-    public float interactionRange = 2f;
+    public float interactionRange = 0.5f;
     private Transform player;
 
     public GameObject interactionIcon;
