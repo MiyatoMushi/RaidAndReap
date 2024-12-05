@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 1
   toolDamage: 1
-  itemType: 1
-  actionType: 1
-  stackable: 1
+  itemType: 2
+  actionType: 2
+  stackable: 0
   itemIcon: {fileID: 21300000, guid: 5a8540fa4661cfb49bbbaf10fbd96993, type: 3}
