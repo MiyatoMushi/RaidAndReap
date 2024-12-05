@@ -18,6 +18,7 @@ public class Item : ScriptableObject
     public Sprite itemIcon;
 
     public enum ItemType {
+        Seed,
         Decoration,
         Tool,
         Weapon,
@@ -25,6 +26,7 @@ public class Item : ScriptableObject
     }
 
     public enum ActionType {
+        DamageEnemy,
         DestroyRock,
         DestroyWood,
         CutPlant,
