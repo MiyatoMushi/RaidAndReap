@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ed8411e19d3dbac45ae5d9cf1328a56e
   - enabled: 1
-    path: Assets/Scenes/PlayerFarm.unity
+    path: Assets/Scenes/OldFarm.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
     path: Assets/Scenes/PlayerHouse.unity
     guid: e934e1a0f604014438b7e67d2f99d04b
+  - enabled: 1
+    path: Assets/Scenes/PlayerFarm.unity
+    guid: 1cf0e097e3b4a384ba3559d568004420
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 442c380f3b9b2bd47bdfb598f1b9d848, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 4b32a3a823f23f8459eb01b58d846066, type: 2}
