@@ -200,8 +200,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491489588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9997, y: -5.1839, z: 0}
-  m_LocalScale: {x: 0.3436005, y: 0.07771581, z: 2.4222264}
+  m_LocalPosition: {x: -2.6319, y: -5.1784, z: 0}
+  m_LocalScale: {x: 1.0703827, y: 0.088697046, z: 2.4222264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447995d22ce47c0418f536dfd1cc5239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TestingFarm
+  sceneToLoad: PlayerFarm
 --- !u!212 &491489592
 SpriteRenderer:
   m_ObjectHideFlags: 0
