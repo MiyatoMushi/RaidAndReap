@@ -12,6 +12,8 @@ TagManager:
   - PlayerRigidbody
   - Boar
   - Enemy
+  - main
+  - Tree
   layers:
   - Default
   - TransparentFX

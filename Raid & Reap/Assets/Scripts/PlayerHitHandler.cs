@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHitHandler : MonoBehaviour
 {
+    
+
+
+
     [Header("Knockback Settings")]
     public float knockbackForce = 10f; // Knockback force applied to the player
     public float knockbackDuration = 0.2f; // Duration of knockback effect
@@ -18,6 +23,8 @@ public class PlayerHitHandler : MonoBehaviour
 
     private void Start()
     {
+
+       
         // Ensure the player has a Rigidbody2D component
         playerRb = GetComponent<Rigidbody2D>();
         if (playerRb == null)
@@ -71,6 +78,7 @@ public class PlayerHitHandler : MonoBehaviour
             }
         }
     }
+
 
     private void PlayHitSound()
     {
