@@ -25,6 +25,8 @@ public class Wild_Boar : MonoBehaviour
     private AudioSource soundSource;
     public AudioClip playerHit;
 
+    public QuestManager questManager;
+
     private void Start()
     {
         waitTime = startWaitTime;
@@ -48,6 +50,7 @@ public class Wild_Boar : MonoBehaviour
         if (player == null) return;
 
         if (PlayerStats.boarHealth <= 0){
+            questManager.CheckQuestProgress("Kill 1 Boar");
             Destroy(gameObject);
         }
         else if (PlayerStats.boarHealth <= 9){
