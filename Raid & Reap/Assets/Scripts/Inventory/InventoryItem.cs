@@ -49,4 +49,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.SetParent(parentAfterDrag);
         }
     }
+
+    private void UseTool(Item tool)
+    {
+        Debug.Log("Using Tool: " + tool.itemName);
+
+        // Add the logic for using a tool (e.g., chopping a tree)
+        if (tool.itemName == "LumberAxe")
+        {
+            Debug.Log("Swinging LumberAxe!");
+            // Call your LumberAxe swing logic here
+        }
+    }
 }

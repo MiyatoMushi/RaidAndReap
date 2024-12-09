@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     [Header("Gameplay")]
+    public string itemName;
     public int weaponDamage;
     public int toolDamage;
     public ItemType itemType;

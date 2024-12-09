@@ -4497,7 +4497,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2438134501918184233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2438134502322157513
 GameObject:
   m_ObjectHideFlags: 0
@@ -4746,7 +4758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.27372965, b: 0.056470275, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4766,7 +4778,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rusty
+  m_Text: Pickaxe
 --- !u!1 &2527358431653408043
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,7 +4993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Iron
+  m_Text: Sword
 --- !u!1 &2716217683611380798
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,7 +7835,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12001,7 +12013,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14873,7 +14885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7978989, b: 0.051886797, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14893,7 +14905,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gold
+  m_Text: Consumable
 --- !u!1 &8287377449548300529
 GameObject:
   m_ObjectHideFlags: 0
@@ -15122,9 +15134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 5656301815610230092}
   itemsToSpawn:
-  - {fileID: 11400000, guid: 073bab30fc037b5499d0cf82f3aefba4, type: 2}
-  - {fileID: 11400000, guid: 1add98dfa9760e04d8874b2cecc80552, type: 2}
   - {fileID: 11400000, guid: 22aec7dba909d3d4ba570624d3635460, type: 2}
+  - {fileID: 11400000, guid: 48b7eea7ef22c1c478bd3fc2a48389c8, type: 2}
+  - {fileID: 11400000, guid: 1add98dfa9760e04d8874b2cecc80552, type: 2}
 --- !u!1 &8335418312246590885
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager instance;
+
     private int itemMaxStack = 99;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
@@ -17,6 +19,10 @@ public class InventoryManager : MonoBehaviour
     public Image actionImage; // The image inside the button that we want to change opacity of
 
     private Item currentTool;
+
+    private void Awake () {
+        instance = this;
+    }
 
     public void ChangeSelectedSlot(int newValue)
     {
@@ -41,24 +47,28 @@ public class InventoryManager : MonoBehaviour
                 case Item.ItemType.Tool:
                     UpdateActionButtonOpacity(1f);
                     UpdateActionButtonSprite(selectedItem.item.itemIcon);
+                    AssignButtonFunction(() => UseTool(selectedItem.item));
                     break;
 
                 case Item.ItemType.Weapon:
                     // Example: Update button for Weapon (you can define the sprite for weapons)
                     UpdateActionButtonOpacity(1f);
                     UpdateActionButtonSprite(selectedItem.item.itemIcon);
+                    AssignButtonFunction(() => UseWeapon(selectedItem.item));
                     break;
 
                 case Item.ItemType.Consumable:
                     // Example: Update button for Consumable
                     UpdateActionButtonOpacity(1f);
                     UpdateActionButtonSprite(selectedItem.item.itemIcon);
+                    AssignButtonFunction(() => UseConsumable(selectedItem.item));
                     break;
 
                 case Item.ItemType.Decoration:
                     // Example: Update button for Decoration
                     UpdateActionButtonOpacity(1f);
                     UpdateActionButtonSprite(selectedItem.item.itemIcon);
+                    AssignButtonFunction(() => UseDecoration(selectedItem.item));
                     break;
 
                 default:
@@ -66,6 +76,8 @@ public class InventoryManager : MonoBehaviour
                     currentTool = null;
                     UpdateActionButtonOpacity(0f);
                     ResetActionButtonSprite();
+                    AssignButtonFunction(null);
+                    AssignButtonFunction(null);
                     break;
             }
         }
@@ -74,6 +86,7 @@ public class InventoryManager : MonoBehaviour
             currentTool = null;
             UpdateActionButtonOpacity(0f);
             ResetActionButtonSprite();
+            AssignButtonFunction(null);
         }
 
         if (audioSource != null && selectSound != null)
@@ -159,5 +172,58 @@ public class InventoryManager : MonoBehaviour
             // Set this to whatever sprite you'd like to be the default state of the action button (e.g., empty or neutral sprite)
             actionImage.sprite = null; // or assign a default sprite
         }
+    }
+
+    private void AssignButtonFunction(UnityEngine.Events.UnityAction action)
+    {
+        // Clear existing listeners to avoid stacking functions
+        actionButton.onClick.RemoveAllListeners();
+
+        if (action != null)
+        {
+            actionButton.onClick.AddListener(action);
+        }
+    }
+    
+    //Using Items;
+    private void UseTool(Item tool)
+    {
+        Debug.Log("Using Tool: " + tool.itemName);
+
+        // Add tool-specific logic here (e.g., chopping a tree)
+        if (tool.itemName == "Rusty Lumber Axe")
+        {
+            Debug.Log("Swinging LumberAxe!");
+            // Call your LumberAxe-specific logic here
+        }
+    }
+
+    private void UseWeapon(Item weapon)
+    {
+        Debug.Log("Using Weapon: " + weapon.itemName);
+
+        // Add weapon-specific logic here (e.g., attacking an enemy)
+        if (weapon.itemName == "Sword")
+        {
+            Debug.Log("Swinging Sword!");
+            // Call your Sword-specific logic here
+        }
+    }
+
+    private void UseConsumable(Item consumable)
+    {
+        Debug.Log("Consuming: " + consumable.itemName);
+
+        // Add consumable-specific logic here (e.g., healing or buffs)
+        if (consumable.itemName == "Health Potion")
+        {
+            Debug.Log("Drinking Health Potion!");
+            // Call your potion logic here
+        }
+    }
+
+    private void UseDecoration(Item decoration)
+    {
+        Debug.Log("Placing: " + decoration.itemName);
     }
 }
