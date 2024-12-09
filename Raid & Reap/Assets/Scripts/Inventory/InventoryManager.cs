@@ -211,7 +211,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Using Weapon: " + weapon.itemName);
 
         // Add weapon-specific logic here (e.g., attacking an enemy)
-        if (weapon.itemName == "Sword")
+        if (weapon.itemName.Contains("Sword"))
         {
             Debug.Log("Swinging Sword!");
             // Call your Sword-specific logic here

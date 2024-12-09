@@ -31,7 +31,6 @@ public class QuestGiver : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(transform.position, player.position);
-        Debug.Log($"Distance to player: {distance}");
         if (distance <= detectionRange)
         {
             if (!isPlayerInRange)

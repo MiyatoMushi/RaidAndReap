@@ -141,19 +141,19 @@ AnimatorStateMachine:
     m_Position: {x: 350, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1708504237278894415}
-    m_Position: {x: 380, y: -30, z: 0}
+    m_Position: {x: 360, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3202463037481255960}
     m_Position: {x: 20, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3851276287501912200}
-    m_Position: {x: 150, y: 310, z: 0}
+    m_Position: {x: 20, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1680004205637935474}
-    m_Position: {x: 370, y: 320, z: 0}
+    m_Position: {x: 20, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3540765257795283844}
-    m_Position: {x: 619.3605, y: 289.9965, z: 0}
+    m_Position: {x: 20, y: 400, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -324,43 +324,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: horizontal
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: vertical
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: CutDown
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: CutRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: CutUp
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: CutLeft
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: SwingUp
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
