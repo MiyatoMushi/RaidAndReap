@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984614237705005938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.48, y: 0.004, z: -0.07236131}
+  m_LocalPosition: {x: 0, y: 0.02, z: -0.07236131}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -121,8 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastDirection: {x: 0, y: 0}
-  movementAnimator: {fileID: 0}
-  cuttingAnimator: {fileID: 0}
+  animator: {fileID: 0}
   idleDown: {fileID: 821833129, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
   idleUp: {fileID: 1047588965, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
   idleLeft: {fileID: 636970526, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
