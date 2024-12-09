@@ -4,16 +4,36 @@ using UnityEngine;
 
 public class TreeScript : MonoBehaviour, IDamageable
 {
-    public int health = 5; // Number of hits needed to destroy the tree
+    public int health = 5;
+    public GameObject treeChild;
+    private SpriteRenderer treeSpriteRenderer;
+
+    void Start()
+    {
+        treeSpriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public void TakeDamage(int amount)
     {
+        IsDestroyed();
         health -= amount;
         Debug.Log("Tree took damage! Remaining health: " + health);
     }
 
     public bool IsDestroyed()
     {
-        return health <= 0;
+        if (health <= 1)
+        {
+            // Make the child invisible
+            if (treeChild != null)
+            {
+                treeChild.SetActive(false);
+                Debug.Log("You Cut Down A Tree: " + health);
+            }
+
+            return true; // Tree is destroyed
+        }
+
+        return false;
     }
 }

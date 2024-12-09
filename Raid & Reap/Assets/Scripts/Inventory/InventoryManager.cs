@@ -193,8 +193,16 @@ public class InventoryManager : MonoBehaviour
         // Add tool-specific logic here (e.g., chopping a tree)
         if (tool.itemName == "Rusty Lumber Axe")
         {
-            Debug.Log("Swinging LumberAxe!");
-            // Call your LumberAxe-specific logic here
+            LumberAxe lumberAxe =  FindObjectOfType<LumberAxe>();
+            if (lumberAxe != null) // Ensure the script was found
+            {
+                lumberAxe.UseRustyLumberAxe(); // Call the function here
+                Debug.Log("Swinging LumberAxe!");
+            }
+            else
+            {
+                Debug.LogWarning("LumberAxe script not found in the scene!");
+            }
         }
     }
 

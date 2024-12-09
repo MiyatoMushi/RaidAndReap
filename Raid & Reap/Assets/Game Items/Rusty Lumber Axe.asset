@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4486c851c80c74eb54aba5c76b9343, type: 3}
   m_Name: Rusty Lumber Axe
   m_EditorClassIdentifier: 
+  itemName: Rusty Lumber Axe
   weaponDamage: 1
   toolDamage: 1
   itemType: 2
