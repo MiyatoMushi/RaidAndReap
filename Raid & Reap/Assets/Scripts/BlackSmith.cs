@@ -7,7 +7,7 @@ public class BlackSmith : MonoBehaviour
 {
     public float interactionRange = 0.5f;
     private Transform player;
-
+    public Image itemInHand;
     public GameObject interactionIcon;
     public Button interactionButton;
 
@@ -94,6 +94,7 @@ public class BlackSmith : MonoBehaviour
         if (interactionIcon != null)
         {
             interactionIcon.SetActive(true);
+            itemInHand.gameObject.SetActive(false);
         }
     }
 
@@ -102,6 +103,7 @@ public class BlackSmith : MonoBehaviour
         if (interactionIcon != null)
         {
             interactionIcon.SetActive(false);
+            itemInHand.gameObject.SetActive(true);
         }
     }
 
