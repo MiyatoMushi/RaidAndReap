@@ -7,6 +7,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     private Vector2 lastDirection;
+    //private InventoryManager inventoryManager;
 
     //Animations and Sprites
     public Animator animator;
@@ -19,6 +20,7 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        //inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     //Functions
@@ -32,8 +34,9 @@ public class PlayerAnimations : MonoBehaviour
                 animator.SetBool("isMoving", true);
                 animator.SetFloat("horizontal", direction.x);
                 animator.SetFloat("vertical", direction.y);
-
+                
                 lastDirection = direction; //take last position
+                //inventoryManager.DisableActionButton();
                 StopAnimation();
             }
             else
@@ -41,6 +44,7 @@ public class PlayerAnimations : MonoBehaviour
                 // Debug.Log("Idle with lastDirection: " + lastDirection); // For checking
 
                 animator.SetBool("isMoving", false);
+                //inventoryManager.EnableActionButton();
                 //animator.enabled = false; // Disable animator to stop animations
                 //UpdateSprite();
             }
@@ -49,7 +53,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void AnimateRustyLumberAxe() {
         if (animator != null) {
-            animator.SetBool("isCuttingRusty", true);
+            animator.SetBool("rustyLumberAxe", true);
 
             animator.SetFloat("horizontal", lastDirection.x);
             animator.SetFloat("vertical", lastDirection.y);
@@ -57,7 +61,7 @@ public class PlayerAnimations : MonoBehaviour
     }
 
     public void StopAnimation() {
-        animator.SetBool("isCuttingRusty", false);
+        animator.SetBool("rustyLumberAxe", false);
     }
 
     /*private void UpdateSprite()

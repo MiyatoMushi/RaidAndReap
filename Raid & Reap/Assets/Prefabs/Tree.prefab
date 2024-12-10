@@ -246,7 +246,7 @@ MonoBehaviour:
   audioSource: {fileID: 2854681633400067977}
   hitSound: {fileID: 8300000, guid: 7b57c1d32ca0d6e42b815b24948d4200, type: 3}
   health: 5
-  treeChild: {fileID: 1482713940511627235}
+  objectChild: {fileID: 1482713940511627235}
 --- !u!61 &1482713941395100207
 BoxCollider2D:
   m_ObjectHideFlags: 0

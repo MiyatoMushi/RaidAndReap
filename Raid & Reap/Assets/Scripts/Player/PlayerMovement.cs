@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
-    //Reference
-    PlayerAnimations playerAnimations;
-    PlayerControls playerControls;
+//Reference        
+PlayerAnimations playerAnimations;
+PlayerControls playerControls;
 
-    //Movement Variables
-    public float playerBaseMovementSpeed; 
-    float speedX, speedY;
+//Movement Variables        
+public float playerBaseMovementSpeed; 
+float speedX, speedY;
+private bool canMove = true;
 
-    //Unity Objects
-    Rigidbody2D rb;
+//Unity Objects
+Rigidbody2D rb;
 
-    // Start is called before the first frame update
+// Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,11 +27,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) 
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         /*Movement Controls sa PC (WASD, OR ARROW UP, DOWN, LEFT, RIGHT)- JC
         speedX = Input.GetAxisRaw("Horizontal") * playerBaseMovementSpeed;
         speedY = Input.GetAxisRaw("Vertical") * playerBaseMovementSpeed;
         rb.velocity = new Vector2(speedX, speedY);*/
-
         //Joystick Controls sa CP - JC
         Vector2 joystickInput = playerControls.joystickVector;
 
@@ -42,5 +46,13 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = new Vector2(speedX, speedY); //Take last position - JC
         //playerAnimations.AnimateMovement(direction);
         playerAnimations.AnimateMovement(joystickInput);
+    }
+
+    public void ActivateMovement() {
+        canMove = true;
+    }
+
+    public void DeactivateMovement() {
+        canMove = false;
     }
 }

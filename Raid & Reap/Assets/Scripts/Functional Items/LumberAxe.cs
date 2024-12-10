@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class LumberAxe : MonoBehaviour
 {
-    PlayerAnimations playerAnimations;
+    private PlayerAnimations playerAnimations;
+    private PlayerMovement playerMovement;
     private float timeBetweenSwing;
     public float startTimeBetweenSwing;
 
@@ -17,6 +18,7 @@ public class LumberAxe : MonoBehaviour
     private void Start()
     {
         playerAnimations = transform.Find("Player_Visuals").GetComponent<PlayerAnimations>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void Update()
@@ -34,7 +36,7 @@ public class LumberAxe : MonoBehaviour
         }
     }
 
-    public void UseRustyLumberAxe()
+    public void UseRustyLumberAxe(int damage)
     {
         // Only swing if not already swinging and cooldown has expired
         if (!isSwinging && timeBetweenSwing <= 0)
@@ -43,11 +45,12 @@ public class LumberAxe : MonoBehaviour
             timeBetweenSwing = startTimeBetweenSwing; // Reset cooldown
             playerAnimations.AnimateRustyLumberAxe();
 
-            StartCoroutine(PerformSwing());
+            playerMovement.DeactivateMovement();
+            StartCoroutine(PerformSwing(damage));
         }
     }
 
-    private IEnumerator PerformSwing()
+    private IEnumerator PerformSwing(int damage)
     {
         // Wait for animation or swing delay (synchronized with animation)
         yield return new WaitForSeconds(startTimeBetweenSwing / 2); // Adjust timing to match animation
@@ -56,12 +59,13 @@ public class LumberAxe : MonoBehaviour
         Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
         for (int i = 0; i < treeToDestroy.Length; i++)
         {
-            treeToDestroy[i].GetComponent<TreeScript>().TakeDamage(toolDamage);
+            treeToDestroy[i].GetComponent<DestroyableObject>().TakeDamage(damage);
         }
 
         // Wait for the remainder of the cooldown, if necessary
         yield return new WaitForSeconds(startTimeBetweenSwing / 2);
 
+        playerMovement.ActivateMovement();
         playerAnimations.StopAnimation();
     }
 

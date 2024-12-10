@@ -190,14 +190,14 @@ public class InventoryManager : MonoBehaviour
     {
         Debug.Log("Using Tool: " + tool.itemName);
         StartCoroutine(ButtonCooldown());
-        actionButton.interactable = false;
+        DisableActionButton();
         // Add tool-specific logic here (e.g., chopping a tree)
-        if (tool.itemName == "Rusty Lumber Axe")
+        if (tool.itemName == "Rusty Lumber Axe" || tool.itemName == "Iron Lumber Axe" || tool.itemName == "Gold Lumber Axe")
         {
             LumberAxe lumberAxe =  FindObjectOfType<LumberAxe>();
             if (lumberAxe != null) // Ensure the script was found
             {
-                lumberAxe.UseRustyLumberAxe(); // Call the function here
+                lumberAxe.UseRustyLumberAxe(currentTool.toolDamage); // Call the function here
                 Debug.Log("Swinging LumberAxe!");
             }
             else
@@ -238,6 +238,14 @@ public class InventoryManager : MonoBehaviour
 
     private IEnumerator ButtonCooldown() {
         yield return new WaitForSeconds(1f);
+        EnableActionButton();
+    }
+
+    public void EnableActionButton() {
         actionButton.interactable = true;
+    }
+
+    public void DisableActionButton() {
+        actionButton.interactable = false;
     }
 }

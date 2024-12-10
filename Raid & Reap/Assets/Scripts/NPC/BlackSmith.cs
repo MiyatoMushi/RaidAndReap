@@ -7,7 +7,6 @@ public class BlackSmith : MonoBehaviour
 {
     public float interactionRange = 0.5f;
     private Transform player;
-    public Image itemInHand;
     public GameObject interactionIcon;
     public Button interactionButton;
 
@@ -93,8 +92,7 @@ public class BlackSmith : MonoBehaviour
     {
         if (interactionIcon != null)
         {
-            interactionIcon.SetActive(true);
-            itemInHand.gameObject.SetActive(false);
+            interactionButton.gameObject.SetActive(true);
         }
     }
 
@@ -102,8 +100,8 @@ public class BlackSmith : MonoBehaviour
     {
         if (interactionIcon != null)
         {
-            interactionIcon.SetActive(false);
-            itemInHand.gameObject.SetActive(true);
+            interactionButton.gameObject.SetActive(false);
+            //interactionIcon.SetActive(false);
         }
     }
 
@@ -126,8 +124,11 @@ public class BlackSmith : MonoBehaviour
 
     private void OpenShop()
     {
+        InventoryManager inventoryManager;
+        inventoryManager = FindObjectOfType<InventoryManager>();
         if (shopUI != null)
         {
+            inventoryManager.EnableActionButton();
             // Hide other canvases
             foreach (Canvas canvas in canvasesToHide)
             {
@@ -144,7 +145,6 @@ public class BlackSmith : MonoBehaviour
         if (shopUI != null)
         {
             shopUI.SetActive(false);
-
             // Re-enable other canvases
             foreach (Canvas canvas in canvasesToHide)
             {

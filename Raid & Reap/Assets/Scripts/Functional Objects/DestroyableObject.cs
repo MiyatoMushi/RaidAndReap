@@ -2,37 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeScript : MonoBehaviour
+public class DestroyableObject : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip hitSound;
     public int health = 5;
-    public GameObject treeChild;
-    private SpriteRenderer treeSpriteRenderer;
+    public GameObject objectChild;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        treeSpriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int amount)
     {
-        IsDestroyed();
+        if (IsDestroyed()) return;
+
         health -= amount;
-        Debug.Log("Tree took damage! Remaining health: " + health);
+        Debug.Log("Object Health: " + health);
         audioSource.clip = hitSound;
         audioSource.Play();
     }
 
+//Ayusin ko to mamaya
     public bool IsDestroyed()
     {
-        if (health <= 1)
+        if (health <= 0)
         {
             // Make the child invisible
-            if (treeChild != null)
+            if (objectChild != null)
             {
-                treeChild.SetActive(false);
-                Debug.Log("You Cut Down A Tree: " + health);
+                objectChild.SetActive(false);
+                Debug.Log("Object Destroyed " + health);
             }
 
             return true; // Tree is destroyed
