@@ -189,7 +189,8 @@ public class InventoryManager : MonoBehaviour
     private void UseTool(Item tool)
     {
         Debug.Log("Using Tool: " + tool.itemName);
-
+        StartCoroutine(ButtonCooldown());
+        actionButton.interactable = false;
         // Add tool-specific logic here (e.g., chopping a tree)
         if (tool.itemName == "Rusty Lumber Axe")
         {
@@ -233,5 +234,10 @@ public class InventoryManager : MonoBehaviour
     private void UseDecoration(Item decoration)
     {
         Debug.Log("Placing: " + decoration.itemName);
+    }
+
+    private IEnumerator ButtonCooldown() {
+        yield return new WaitForSeconds(1f);
+        actionButton.interactable = true;
     }
 }

@@ -11,56 +11,62 @@ public class LumberAxe : MonoBehaviour
     public LayerMask WhatToDestroy;
     public float swingRange;
     public int toolDamage;
-    public int weaponDamage;
 
-    private void Start() {
+    private bool isSwinging = false; // Prevent spamming
+
+    private void Start()
+    {
         playerAnimations = transform.Find("Player_Visuals").GetComponent<PlayerAnimations>();
     }
 
     private void Update()
     {
-        // Ensure that timeBetweenSwing never goes below 0
+        // Cooldown logic
         if (timeBetweenSwing > 0)
         {
             timeBetweenSwing -= Time.deltaTime;
+        }
+
+        // Allow swinging again after cooldown
+        if (timeBetweenSwing <= 0 && isSwinging)
+        {
+            isSwinging = false;
         }
     }
 
     public void UseRustyLumberAxe()
     {
-        // Only use the axe if the cooldown time is done
-        if (timeBetweenSwing <= 0)
+        // Only swing if not already swinging and cooldown has expired
+        if (!isSwinging && timeBetweenSwing <= 0)
         {
+            isSwinging = true; // Block further input
+            timeBetweenSwing = startTimeBetweenSwing; // Reset cooldown
             playerAnimations.AnimateRustyLumberAxe();
-            StartCoroutine(StopAnimationAfterCooldown());
-        }
-        else
-        {
-            // Reduce the cooldown time by the time passed since the last frame
-            timeBetweenSwing -= Time.deltaTime;
+
+            StartCoroutine(PerformSwing());
         }
     }
 
-    private IEnumerator StopAnimationAfterCooldown()
+    private IEnumerator PerformSwing()
     {
-        // Wait for the cooldown duration
-        yield return new WaitForSeconds(startTimeBetweenSwing);
+        // Wait for animation or swing delay (synchronized with animation)
+        yield return new WaitForSeconds(startTimeBetweenSwing / 2); // Adjust timing to match animation
 
-        // Detect trees within the swing range
-            Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
-            for (int i = 0; i < treeToDestroy.Length; i++)
-            {
-                // Apply damage to each tree
-                treeToDestroy[i].GetComponent<TreeScript>().TakeDamage(toolDamage);
-            }
-            // Reset the cooldown timer
-            timeBetweenSwing = startTimeBetweenSwing;
+        // Detect and apply damage to trees
+        Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
+        for (int i = 0; i < treeToDestroy.Length; i++)
+        {
+            treeToDestroy[i].GetComponent<TreeScript>().TakeDamage(toolDamage);
+        }
 
-        // Stop the cutting animation
+        // Wait for the remainder of the cooldown, if necessary
+        yield return new WaitForSeconds(startTimeBetweenSwing / 2);
+
         playerAnimations.StopAnimation();
     }
 
-    void OnDrawGizmosSelected() {
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(swingPositiion.position, swingRange);
     }
