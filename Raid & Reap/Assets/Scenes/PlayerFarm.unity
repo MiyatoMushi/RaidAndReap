@@ -2650,6 +2650,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 7b57c1d32ca0d6e42b815b24948d4200, type: 3}
   health: 5
   objectChild: {fileID: 373523206}
+  itemPrefab: {fileID: 0}
 --- !u!1 &391625269
 GameObject:
   m_ObjectHideFlags: 0
