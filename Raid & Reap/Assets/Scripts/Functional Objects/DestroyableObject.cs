@@ -9,6 +9,7 @@ public class DestroyableObject : MonoBehaviour
     public int health = 5;
     public GameObject objectChild;
     private SpriteRenderer spriteRenderer;
+    public GameObject itemPrefab; // Drop Item Prefab
 
     void Start()
     {
@@ -33,11 +34,17 @@ public class DestroyableObject : MonoBehaviour
             {
                 objectChild.SetActive(false);
                 Debug.Log("Object Destroyed " + health);
+                DropItem();
             }
 
             return true; // Tree is destroyed
         }
 
         return false;
+    }
+
+    void DropItem()
+    {
+        Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -247,6 +247,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 7b57c1d32ca0d6e42b815b24948d4200, type: 3}
   health: 5
   objectChild: {fileID: 1482713940511627235}
+  itemPrefab: {fileID: 5289152841756377749, guid: df640e11d3280a74aa4889bfd809b5fa, type: 3}
 --- !u!61 &1482713941395100207
 BoxCollider2D:
   m_ObjectHideFlags: 0

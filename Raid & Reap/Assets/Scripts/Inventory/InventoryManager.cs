@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
+    public InventoryData inventoryData; // Reference to the Scriptable Object
 
     private int itemMaxStack = 99;
     public InventorySlot[] inventorySlots;
@@ -22,6 +24,10 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake () {
         instance = this;
+    }
+
+    void Start(){
+        LoadInventory();
     }
 
     public void ChangeSelectedSlot(int newValue)
@@ -105,6 +111,8 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(Item item)
     {
+        AddItemToInventory(item);
+
         if (item.stackable) // Check if the item is stackable
         {
             // Try to stack the item in existing slots
@@ -112,6 +120,7 @@ public class InventoryManager : MonoBehaviour
             {
                 InventorySlot slot = inventorySlots[i];
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                Debug.Log(itemInSlot);
 
                 // If the item is stackable, and the slot already has the same item, stack it
                 if (itemInSlot != null && itemInSlot.item == item && itemInSlot.itemCount < itemMaxStack)
@@ -258,4 +267,83 @@ public class InventoryManager : MonoBehaviour
     public void DisableActionButton() {
         actionButton.interactable = false;
     }
+/// Item Saving not finished
+    public void AddItemToInventory(Item item)
+    {
+        // Check if the item already exists in the inventory
+        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
+
+        if (existingItem != null)
+        {
+            // Increase the count if the item is stackable
+            existingItem.itemCount++;
+        }
+        else
+        {
+            // Add new item to the inventory
+            inventoryData.items.Add(new InventoryItemData
+            {
+                itemName = item.itemName,
+                weaponDamage = item.weaponDamage,
+                toolDamage = item.toolDamage,
+                itemType = item.itemType.ToString(),
+                actionType = item.actionType.ToString(),
+                stackable = item.stackable,
+                itemCount = 1,
+                itemIcon = item.itemIcon
+            });
+        }
+    }
+
+    public void RemoveItemFromInventory(Item item)
+    {
+        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
+
+        if (existingItem != null)
+        {
+            existingItem.itemCount--;
+            if (existingItem.itemCount <= 0)
+            {
+                inventoryData.items.Remove(existingItem);
+            }
+        }
+    }
+
+    public void LoadInventory()
+    {
+        // Populate slots from inventory data
+        for (int i = 0; i < inventoryData.items.Count; i++)
+        {
+            if (i >= inventorySlots.Length) break; // Prevent exceeding available slots
+
+            InventoryItemData itemData = inventoryData.items[i];
+            InventorySlot slot = inventorySlots[i];
+
+            // Create a new inventory item in the slot
+            SpawnItemInSlot(itemData, slot);
+        }
+    }
+
+    private void SpawnItemInSlot(InventoryItemData itemData, InventorySlot slot)
+    {
+        // Instantiate a new inventory item prefab
+        GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+        InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+
+        // Initialize the item
+        inventoryItem.InitializeItem(new Item
+        {
+            itemName = itemData.itemName,
+            weaponDamage = itemData.weaponDamage,
+            toolDamage = itemData.toolDamage,
+            itemType = Enum.TryParse(itemData.itemType, out Item.ItemType parsedType) ? parsedType : Item.ItemType.Tool,
+            actionType = Enum.TryParse(itemData.actionType, out Item.ActionType parsedAction) ? parsedAction : Item.ActionType.DamageEnemy,
+            stackable = itemData.stackable,
+            itemIcon = itemData.itemIcon
+        });
+
+        inventoryItem.itemCount = itemData.itemCount;
+        inventoryItem.RefreshCount();
+    }
+
 }
