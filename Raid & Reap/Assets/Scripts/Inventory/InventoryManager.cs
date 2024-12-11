@@ -188,22 +188,32 @@ public class InventoryManager : MonoBehaviour
     //Using Items;
     private void UseTool(Item tool)
     {
+        LumberAxe lumberAxe =  FindObjectOfType<LumberAxe>();
         Debug.Log("Using Tool: " + tool.itemName);
         StartCoroutine(ButtonCooldown());
         DisableActionButton();
         // Add tool-specific logic here (e.g., chopping a tree)
-        if (tool.itemName == "Rusty Lumber Axe" || tool.itemName == "Iron Lumber Axe" || tool.itemName == "Gold Lumber Axe")
+        if (lumberAxe != null)
         {
-            LumberAxe lumberAxe =  FindObjectOfType<LumberAxe>();
-            if (lumberAxe != null) // Ensure the script was found
+            if (tool.itemName == "Rusty Lumber Axe")
             {
-                lumberAxe.UseRustyLumberAxe(currentTool.toolDamage); // Call the function here
-                Debug.Log("Swinging LumberAxe!");
+                lumberAxe.UseLumberAxe(currentTool.toolDamage, 1);
+                Debug.Log("Swinging Rusty Lumber Axe!");
             }
-            else
+            else if (tool.itemName == "Iron Lumber Axe")
             {
-                Debug.LogWarning("LumberAxe script not found in the scene!");
+                lumberAxe.UseLumberAxe(currentTool.toolDamage, 2);
+                Debug.Log("Swinging Iron Lumber Axe!");
             }
+            else if (tool.itemName == "Gold Lumber Axe")
+            {
+                lumberAxe.UseLumberAxe(currentTool.toolDamage, 3);
+                Debug.Log("Swinging Gold Lumber Axe!");
+            }
+        } 
+        else
+        {
+            Debug.LogWarning("LumberAxe script not found in the scene!");
         }
     }
 
@@ -212,7 +222,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Using Weapon: " + weapon.itemName);
 
         // Add weapon-specific logic here (e.g., attacking an enemy)
-        if (weapon.itemName.Contains("Sword"))
+        if (weapon.itemName.Contains("Rusty Sword") || weapon.itemName.Contains("Iron Sword") || weapon.itemName.Contains("Gold Sword"))
         {
             Debug.Log("Swinging Sword!");
             // Call your Sword-specific logic here

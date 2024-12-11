@@ -53,7 +53,28 @@ public class PlayerAnimations : MonoBehaviour
 
     public void AnimateRustyLumberAxe() {
         if (animator != null) {
+            animator.SetBool("isMoving", false);
             animator.SetBool("rustyLumberAxe", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateIronLumberAxe() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("ironLumberAxe", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateGoldLumberAxe() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("goldLumberAxe", true);
 
             animator.SetFloat("horizontal", lastDirection.x);
             animator.SetFloat("vertical", lastDirection.y);
@@ -62,6 +83,8 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StopAnimation() {
         animator.SetBool("rustyLumberAxe", false);
+        animator.SetBool("ironLumberAxe", false);
+        animator.SetBool("goldLumberAxe", false);
     }
 
     /*private void UpdateSprite()

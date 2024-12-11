@@ -120,14 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995fef2d9a34cc7438548e4796c213a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastDirection: {x: 0, y: 0}
-  animator: {fileID: 0}
-  idleDown: {fileID: 821833129, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
-  idleUp: {fileID: 1047588965, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
-  idleLeft: {fileID: 636970526, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
-  idleRight: {fileID: -703075688, guid: b72e5a8a394003c478c3c13e0e913373, type: 3}
-  damage: 1
-  cutTreeButton: {fileID: 0}
+  animator: {fileID: 984614237705005933}
 --- !u!61 &984614237705005931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,6 +158,7 @@ GameObject:
   - component: {fileID: 984614237830028383}
   - component: {fileID: 984614237830028380}
   - component: {fileID: 984614237830028379}
+  - component: {fileID: 929158941}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -222,6 +216,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBaseMovementSpeed: 2.5
+--- !u!114 &929158941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984614237830028384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93582dfecc85c544ab7bcd3e4aece517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeBetweenSwing: 1
+  swingPositiion: {fileID: 984614237705005934}
+  WhatToDestroy:
+    serializedVersion: 2
+    m_Bits: 8
+  swingRange: 0.5
+  toolDamage: 1
 --- !u!1 &7504737582832358014
 GameObject:
   m_ObjectHideFlags: 0

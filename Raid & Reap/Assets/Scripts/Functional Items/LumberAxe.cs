@@ -6,6 +6,7 @@ public class LumberAxe : MonoBehaviour
     private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private float timeBetweenSwing;
+    private int axeID;
     public float startTimeBetweenSwing;
 
     public Transform swingPositiion;
@@ -36,39 +37,58 @@ public class LumberAxe : MonoBehaviour
         }
     }
 
-    public void UseRustyLumberAxe(int damage)
+    public void UseLumberAxe(int damage, int axeID)
     {
         // Only swing if not already swinging and cooldown has expired
         if (!isSwinging && timeBetweenSwing <= 0)
         {
+            
+            Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
+            for (int i = 0; i < treeToDestroy.Length; i++)
+            {
+                treeToDestroy[i].GetComponent<DestroyableObject>().TakeDamage(damage);
+            }
             isSwinging = true; // Block further input
             timeBetweenSwing = startTimeBetweenSwing; // Reset cooldown
-            playerAnimations.AnimateRustyLumberAxe();
 
+            PlayLumberAxeAnimation(axeID);
             playerMovement.DeactivateMovement();
-            StartCoroutine(PerformSwing(damage));
+            StartCoroutine(PerformSwing());
         }
     }
 
-    private IEnumerator PerformSwing(int damage)
+    private IEnumerator PerformSwing()
     {
         // Wait for animation or swing delay (synchronized with animation)
-        yield return new WaitForSeconds(startTimeBetweenSwing / 2); // Adjust timing to match animation
-
-        // Detect and apply damage to trees
+        yield return new WaitForSeconds(startTimeBetweenSwing / 2);
         Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
         for (int i = 0; i < treeToDestroy.Length; i++)
         {
-            treeToDestroy[i].GetComponent<DestroyableObject>().TakeDamage(damage);
+            treeToDestroy[i].GetComponent<DestroyableObject>().IsDestroyed();
         }
-
-        // Wait for the remainder of the cooldown, if necessary
-        yield return new WaitForSeconds(startTimeBetweenSwing / 2);
-
+        //FindObjectOfType<DestroyableObject>().IsDestroyed();
         playerMovement.ActivateMovement();
         playerAnimations.StopAnimation();
     }
 
+    private void PlayLumberAxeAnimation(int axeID)
+    {
+        switch (axeID) 
+        {
+            case 1:
+                playerAnimations.AnimateRustyLumberAxe();
+                break;
+            case 2:
+                playerAnimations.AnimateIronLumberAxe();
+                break;
+            case 3:
+                playerAnimations.AnimateGoldLumberAxe();
+                break;
+
+        }
+    }
+
+    //Gizmo for player range in tools
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

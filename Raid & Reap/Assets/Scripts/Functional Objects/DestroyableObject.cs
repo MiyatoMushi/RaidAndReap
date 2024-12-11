@@ -17,8 +17,6 @@ public class DestroyableObject : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (IsDestroyed()) return;
-
         health -= amount;
         Debug.Log("Object Health: " + health);
         audioSource.clip = hitSound;
