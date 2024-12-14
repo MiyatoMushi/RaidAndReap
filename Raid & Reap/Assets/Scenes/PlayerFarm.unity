@@ -5810,7 +5810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8af73909eebd0547b6b980ae14d0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: a4a9ee6e935d2dd429bb3aafbf5fe8c5, type: 2}
+  quest: {fileID: 11400000, guid: 17cbf15e091b74943b9b9117662ac7b5, type: 2}
   detectionRange: 0.5
   interactionIcon: {fileID: 342041357}
   interactionButton: {fileID: 2127326998}
