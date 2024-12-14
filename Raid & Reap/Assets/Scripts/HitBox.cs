@@ -13,7 +13,7 @@ public class HitBox : MonoBehaviour
         {
             // Example: Deal damage to the enemy
             playerHitbox.color = new Color(1f, 0f, 0f, 1f);
-            PlayerStats.boarHealth -= 1;
+            PlayerStats.boarHealth -= 5;
         }
     }
 

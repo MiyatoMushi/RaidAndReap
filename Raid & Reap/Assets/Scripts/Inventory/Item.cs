@@ -23,7 +23,8 @@ public class Item : ScriptableObject
         Decoration,
         Tool,
         Weapon,
-        Consumable
+        Consumable,
+        Material
     }
 
     public enum ActionType {
@@ -31,6 +32,7 @@ public class Item : ScriptableObject
         DestroyRock,
         DestroyWood,
         CutPlant,
-        TillSoil
+        TillSoil,
+        None
     }
 }

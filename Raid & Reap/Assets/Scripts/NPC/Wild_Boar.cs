@@ -25,7 +25,7 @@ public class Wild_Boar : MonoBehaviour
     private AudioSource soundSource;
     public AudioClip playerHit;
 
-    public QuestManager questManager;
+    private QuestManager questManager;
 
     private void Start()
     {
@@ -33,6 +33,21 @@ public class Wild_Boar : MonoBehaviour
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
         soundSource = GetComponent<AudioSource>();
+
+        GameObject questManagers = GameObject.FindGameObjectWithTag("QuestManager");
+
+        if (questManagers != null)
+        {
+            questManager = questManagers.GetComponent<QuestManager>();
+            if (questManager == null)
+            {
+                Debug.LogError("GameObject with tag 'QuestManager' does not have a QuestManager component.");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject with tag 'QuestManager' not found in the scene.");
+        }
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -50,11 +65,14 @@ public class Wild_Boar : MonoBehaviour
         if (player == null) return;
 
         if (PlayerStats.boarHealth <= 0){
-            questManager.CheckQuestProgress("Kill 1 Boar");
+            questManager.OnKillTarget("Boar");
             Destroy(gameObject);
         }
         else if (PlayerStats.boarHealth <= 9){
-            ChasePlayer();
+            if (!isHostile){
+                BecomeHostile();
+                ChasePlayer();
+            }
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);

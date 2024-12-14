@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb7614478173ac4abca62eba3a44a22, type: 3}
-  m_Name: Kill a Boar
+  m_Name: Bring 5 Wood
   m_EditorClassIdentifier: 
-  questName: Kill a Boar
-  description: You need to kill it
+  questName: Bring 5 Tree Log
+  description: Chop that wood
   isCompleted: 1
-  Type: 0
-  requiresItem: 0
-  requiredItemName: 
-  requiredItemCount: 0
-  requiredKillTargets:
-  - Boar
-  requiredKillCounts: 01000000
-  experienceReward: 100
-  goldReward: 100
+  Type: 1
+  requiresItem: 1
+  requiredItemName: Tree Log
+  requiredItemCount: 5
+  requiredKillTargets: []
+  requiredKillCounts: 
+  experienceReward: 0
+  goldReward: 0

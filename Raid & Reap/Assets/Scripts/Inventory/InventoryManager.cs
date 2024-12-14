@@ -298,18 +298,14 @@ public class InventoryManager : MonoBehaviour
         });
     }
 
-    public void RemoveItemFromInventory(Item item)
-    {
-        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
 
-        if (existingItem != null)
-        {
-            existingItem.itemCount--;
-            if (existingItem.itemCount <= 0)
-            {
-                inventoryData.items.Remove(existingItem);
-            }
-        }
+    public bool HasItemByName(string itemName)
+    {
+        // Search through InventoryData for the item
+        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == itemName);
+
+        // Return true if found and count is greater than 0
+        return existingItem != null && existingItem.itemCount > 0;
     }
 
     public void LoadInventory()

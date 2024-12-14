@@ -14,6 +14,7 @@ public class DropPickup : MonoBehaviour
 
     private Transform player;       // Reference to the player
     private InventoryManager inventoryManagerScript; // Reference to the InventoryManager script
+    private QuestManager questManager; // Reference to the QuestManager
 
     void Start()
     {
@@ -26,6 +27,21 @@ public class DropPickup : MonoBehaviour
         else
         {
             Debug.LogError("Player not found! Ensure the player GameObject has the 'Player' tag.");
+        }
+
+        GameObject questManagers = GameObject.FindGameObjectWithTag("QuestManager");
+
+        if (questManagers != null)
+        {
+            questManager = questManagers.GetComponent<QuestManager>();
+            if (questManager == null)
+            {
+                Debug.LogError("GameObject with tag 'QuestManager' does not have a QuestManager component.");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject with tag 'QuestManager' not found in the scene.");
         }
 
         // Find the InventoryManager by tag
@@ -82,6 +98,7 @@ public class DropPickup : MonoBehaviour
             Debug.LogError("InventoryManager script reference is missing! Cannot add item to inventory.");
         }
 
+        questManager.OnItemAdded(itemDrop.name, itemQuantity);
         // Destroy the item GameObject
         Destroy(gameObject);
     }
