@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3683607b40a80a14d8ed31af199a2c66, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - itemName: Gold Lumber Axe
+    weaponDamage: 3
+    toolDamage: 3
+    itemType: Tool
+    actionType: DestroyWood
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6f4f90f6fc9be424e8970209d0655021, type: 3}
+  - itemName: Tree log
+    weaponDamage: 0
+    toolDamage: 0
+    itemType: Consumable
+    actionType: TillSoil
+    stackable: 1
+    itemCount: 15
+    itemIcon: {fileID: 21300000, guid: d3243112b9aaad947b04ffdbd1a57b1c, type: 3}

@@ -120,16 +120,15 @@ public class InventoryManager : MonoBehaviour
             {
                 InventorySlot slot = inventorySlots[i];
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-                Debug.Log(itemInSlot);
 
                 // If the item is stackable, and the slot already has the same item, stack it
-                if (itemInSlot != null && itemInSlot.item == item && itemInSlot.itemCount < itemMaxStack)
+                if (itemInSlot != null && itemInSlot.item.itemName == item.itemName && itemInSlot.itemCount < itemMaxStack)
                 {
                     itemInSlot.itemCount++;
                     itemInSlot.RefreshCount();
                     return true;
                 }
-            }   
+            }
         }
 
         // If item is not stackable or no space for stacking, spawn a new item
@@ -267,32 +266,36 @@ public class InventoryManager : MonoBehaviour
     public void DisableActionButton() {
         actionButton.interactable = false;
     }
+
 /// Item Saving not finished
+
     public void AddItemToInventory(Item item)
     {
-        // Check if the item already exists in the inventory
-        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
+        if (item.stackable)
+        {
+            // Check if the item already exists in the inventory
+            InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
 
-        if (existingItem != null)
-        {
-            // Increase the count if the item is stackable
-            existingItem.itemCount++;
-        }
-        else
-        {
-            // Add new item to the inventory
-            inventoryData.items.Add(new InventoryItemData
+            if (existingItem != null)
             {
-                itemName = item.itemName,
-                weaponDamage = item.weaponDamage,
-                toolDamage = item.toolDamage,
-                itemType = item.itemType.ToString(),
-                actionType = item.actionType.ToString(),
-                stackable = item.stackable,
-                itemCount = 1,
-                itemIcon = item.itemIcon
-            });
+                // Increase the count if the item is stackable
+                existingItem.itemCount++;
+                return;
+            }
         }
+
+        // Add new item to the inventory (either because it is not stackable or doesn't exist)
+        inventoryData.items.Add(new InventoryItemData
+        {
+            itemName = item.itemName,
+            weaponDamage = item.weaponDamage,
+            toolDamage = item.toolDamage,
+            itemType = item.itemType.ToString(),
+            actionType = item.actionType.ToString(),
+            stackable = item.stackable,
+            itemCount = 1,
+            itemIcon = item.itemIcon
+        });
     }
 
     public void RemoveItemFromInventory(Item item)
@@ -317,10 +320,19 @@ public class InventoryManager : MonoBehaviour
             if (i >= inventorySlots.Length) break; // Prevent exceeding available slots
 
             InventoryItemData itemData = inventoryData.items[i];
-            InventorySlot slot = inventorySlots[i];
 
-            // Create a new inventory item in the slot
-            SpawnItemInSlot(itemData, slot);
+            // Check if the item can be stacked in existing slots
+            bool itemStacked = TryStackItem(itemData);
+
+            // If the item was not stacked, create a new one
+            if (!itemStacked)
+            {
+                InventorySlot emptySlot = FindEmptySlot();
+                if (emptySlot != null)
+                {
+                    SpawnItemInSlot(itemData, emptySlot);
+                }
+            }
         }
     }
 
@@ -342,8 +354,54 @@ public class InventoryManager : MonoBehaviour
             itemIcon = itemData.itemIcon
         });
 
+        // Assign the correct count
         inventoryItem.itemCount = itemData.itemCount;
         inventoryItem.RefreshCount();
     }
+
+    private bool TryStackItem(InventoryItemData itemData)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            // Match items by name, ensure stacking only happens for stackable items
+            if (itemInSlot != null 
+                && itemInSlot.item.itemName == itemData.itemName 
+                && itemInSlot.item.stackable 
+                && itemInSlot.itemCount < itemMaxStack)
+            {
+                int availableSpace = itemMaxStack - itemInSlot.itemCount;
+
+                // Add as many as possible to the existing stack
+                int itemsToAdd = Mathf.Min(availableSpace, itemData.itemCount);
+                itemInSlot.itemCount += itemsToAdd;
+                itemInSlot.RefreshCount();
+
+                // Reduce the count of the remaining items
+                itemData.itemCount -= itemsToAdd;
+
+                // If all items are stacked, return true
+                if (itemData.itemCount <= 0)
+                    return true;
+            }
+        }
+
+        return false; // Could not stack all items
+    }
+
+
+    private InventorySlot FindEmptySlot()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot == null) return slot; // Return the first empty slot
+        }
+        return null;
+    }
+
 
 }
