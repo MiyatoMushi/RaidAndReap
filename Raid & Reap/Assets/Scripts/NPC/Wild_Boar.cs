@@ -26,6 +26,7 @@ public class Wild_Boar : MonoBehaviour
     public AudioClip playerHit;
 
     private QuestManager questManager;
+    private EnemyHealth enemyHealth; // Reference to the EnemyHealth component
 
     private void Start()
     {
@@ -58,18 +59,22 @@ public class Wild_Boar : MonoBehaviour
         {
             Debug.LogError("Player GameObject with tag 'Player' not found in the scene.");
         }
+
+        enemyHealth = GetComponent<EnemyHealth>();
+        if (enemyHealth == null)
+        {
+            Debug.LogError("EnemyHealth component not found on Wild_Boar!");
+        }
     }
 
     private void Update()
     {
         if (player == null) return;
 
-        if (PlayerStats.boarHealth <= 0){
-            questManager.OnKillTarget("Boar");
-            Destroy(gameObject);
-        }
-        else if (PlayerStats.boarHealth <= 9){
-            if (!isHostile){
+        if (enemyHealth.currentHealth < 10)
+        {
+            if (!isHostile)
+            {
                 BecomeHostile();
                 ChasePlayer();
             }

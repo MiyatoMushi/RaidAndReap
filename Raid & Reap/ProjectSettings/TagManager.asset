@@ -18,6 +18,7 @@ TagManager:
   - Drops
   - InventoryManager
   - QuestManager
+  - HitBox
   layers:
   - Default
   - TransparentFX

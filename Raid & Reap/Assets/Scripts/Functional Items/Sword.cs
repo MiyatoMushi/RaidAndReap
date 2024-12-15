@@ -15,10 +15,32 @@ private PlayerAnimations playerAnimations;
     public int weaponDamage;
 
     private bool isSwinging = false; // Prevent spamming
+    private SwordColliderController swordCollider;
+    private SwordDamage swordDamager;
 
     private void Start()
     {
         playerAnimations = transform.Find("Player_Visuals").GetComponent<PlayerAnimations>();
+
+        GameObject swordObject = GameObject.FindGameObjectWithTag("HitBox");
+        if (swordObject != null)
+        {
+            swordCollider = swordObject.GetComponent<SwordColliderController>();
+            if (swordCollider == null)
+            {
+                Debug.LogError("SwordColliderController component not found on GameObject with tag 'Sword'.");
+            }
+            swordDamager = swordObject.GetComponent<SwordDamage>();
+            if (swordDamager == null)
+            {
+                Debug.LogError("SwordDamage component not found on GameObject with tag 'Sword'.");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject found with tag 'Sword'.");
+        }
+
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
@@ -45,16 +67,23 @@ private PlayerAnimations playerAnimations;
             isSwinging = true; // Block further input
             timeBetweenSwing = startTimeBetweenSwing; // Reset cooldown
 
+
             PlaySwordAnimation(swordID);
             playerMovement.DeactivateMovement();
-            StartCoroutine(PerformSwing());
+            StartCoroutine(PerformSwing(damage));
         }
     }
 
-    private IEnumerator PerformSwing()
+    private IEnumerator PerformSwing(int damage)
     {
+        swordCollider.EnableCollider();
+
+        swordDamager.GetDamage(damage);
+        
         // Wait for animation or swing delay (synchronized with animation)
         yield return new WaitForSeconds(startTimeBetweenSwing / 2);
+        
+        swordCollider.DisableCollider();
 
         //FindObjectOfType<DestroyableObject>().IsDestroyed();
         playerMovement.ActivateMovement();

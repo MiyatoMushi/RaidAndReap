@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold Sword
   m_EditorClassIdentifier: 
   itemName: Gold Sword
-  weaponDamage: 3
+  weaponDamage: 5
   toolDamage: 0
   itemType: 3
   actionType: 0

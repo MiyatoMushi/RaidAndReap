@@ -1354,7 +1354,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1786541583181918472, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
+      propertyPath: knockbackDistance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133711368815195067, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133711368815195067, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133711368815195067, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 767854091697105247, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d07f2b6143d195e43b36adf37cb39fa8, type: 3}
 --- !u!1 &194919557
 GameObject:
@@ -6295,13 +6312,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4baedd87bd1f0a24caf2ad202968e913, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 1
+  Priority: 146
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

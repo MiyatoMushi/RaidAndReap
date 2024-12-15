@@ -13,19 +13,27 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   items:
-  - itemName: Gold Lumber Axe
+  - itemName: Iron Sword
     weaponDamage: 3
-    toolDamage: 3
-    itemType: Tool
-    actionType: DestroyWood
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
     stackable: 0
     itemCount: 1
-    itemIcon: {fileID: 21300000, guid: 6f4f90f6fc9be424e8970209d0655021, type: 3}
-  - itemName: Tree log
-    weaponDamage: 0
+    itemIcon: {fileID: 21300000, guid: 5feaa945599f7bc4e9b77ffd7997f70f, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
     toolDamage: 0
-    itemType: Material
-    actionType: None
-    stackable: 1
-    itemCount: 20
-    itemIcon: {fileID: 21300000, guid: d3243112b9aaad947b04ffdbd1a57b1c, type: 3}
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Rusty Sword
+    weaponDamage: 1
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 624499e5f18d42844aead5ef69fa2fa4, type: 3}

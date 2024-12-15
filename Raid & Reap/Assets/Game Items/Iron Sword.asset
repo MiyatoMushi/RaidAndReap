@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Sword
   m_EditorClassIdentifier: 
   itemName: Iron Sword
-  weaponDamage: 2
+  weaponDamage: 3
   toolDamage: 0
   itemType: 3
   actionType: 0
