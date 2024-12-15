@@ -5,9 +5,8 @@ using UnityEngine;
 public class Footstep_SFX : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip footstepSound;
 
-    //For changing Pitch / Volume, para maging Dynamic medyo ung sounds
+    // For dynamic sound variation
     public float pitchVariation = 0.1f;
     public float volumeVariation = 0.1f;
 
@@ -15,9 +14,9 @@ public class Footstep_SFX : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private bool playerInTrigger = false;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Find player by tag and get Rigidbody2D component
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
@@ -31,37 +30,43 @@ public class Footstep_SFX : MonoBehaviour
                 Debug.LogError("Player does not have a Rigidbody2D component!");
             }
         }
+
+        // Validate AudioSource
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource is not assigned!");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (playerInTrigger && playerRigidbody != null)
+        if (playerInTrigger && playerRigidbody != null && audioSource != null)
         {
-            //Check if the player is moving
-            if (playerRigidbody.velocity.magnitude > 0.1f) //Adjust threshold as needed
+            // Check if player is moving
+            if (playerRigidbody.velocity.magnitude > 0.1f) // Adjust threshold as needed
             {
                 if (!audioSource.isPlaying)
                 {
                     PlayDynamicFootstep();
                 }
+                audioSource.UnPause(); // Resume playback if paused
             }
             else
             {
-                //Stop the sound when the player is not moving
+                // Pause sound when player stops moving
                 if (audioSource.isPlaying)
                 {
-                    audioSource.Stop();
+                    audioSource.Pause();
                 }
             }
         }
     }
 
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInTrigger = true; //Player is within the trigger area
+            playerInTrigger = true; // Player is within the trigger area
         }
     }
 
@@ -69,21 +74,20 @@ public class Footstep_SFX : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInTrigger = false; //Player has left the trigger area
+            playerInTrigger = false; // Player has left the trigger area
             if (audioSource.isPlaying)
             {
-                audioSource.Stop(); //Stop sound when player leaves the area
+                audioSource.Pause(); // Pause sound when player leaves the area
             }
         }
     }
 
     void PlayDynamicFootstep()
     {
-        //Adjust pitch and volume dynamically
+        // Adjust pitch and volume dynamically
         audioSource.pitch = Random.Range(1.0f - pitchVariation, 1.0f + pitchVariation);
         audioSource.volume = Random.Range(1.0f - volumeVariation, 1.0f);
-        audioSource.clip = footstepSound;
-        audioSource.loop = true; //Keep the sound looping while moving
-        audioSource.Play();
+        audioSource.loop = true; // Ensure looping is enabled
+        audioSource.Play(); // Start playback
     }
 }

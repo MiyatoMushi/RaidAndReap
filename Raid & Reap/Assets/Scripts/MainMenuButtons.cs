@@ -9,7 +9,7 @@ public class MainMenuButtons : MonoBehaviour
     public AudioSource mainMenuButtonSound;
     public GameObject canvas;
 
-    public void NewButton()
+public void NewButton()
     {
         mainMenuButtonSound.Play();
         SceneManager.LoadScene("PlayerFarm");
