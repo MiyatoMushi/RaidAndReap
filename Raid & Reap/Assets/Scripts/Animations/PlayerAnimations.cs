@@ -51,6 +51,7 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    //Lumber Axe
     public void AnimateRustyLumberAxe() {
         if (animator != null) {
             animator.SetBool("isMoving", false);
@@ -81,10 +82,44 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    //Sword
+    public void AnimateRustySword() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("rustySword", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateIronSword() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("ironSword", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateGoldSword() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("goldSword", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
     public void StopAnimation() {
         animator.SetBool("rustyLumberAxe", false);
         animator.SetBool("ironLumberAxe", false);
         animator.SetBool("goldLumberAxe", false);
+        animator.SetBool("rustySword", false);
+        animator.SetBool("ironSword", false);
+        animator.SetBool("goldSword", false);
     }
 
     /*private void UpdateSprite()

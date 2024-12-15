@@ -16262,9 +16262,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 5656301815610230092}
   itemsToSpawn:
-  - {fileID: 11400000, guid: 073bab30fc037b5499d0cf82f3aefba4, type: 2}
-  - {fileID: 11400000, guid: 1add98dfa9760e04d8874b2cecc80552, type: 2}
-  - {fileID: 11400000, guid: 22aec7dba909d3d4ba570624d3635460, type: 2}
+  - {fileID: 11400000, guid: 48b7eea7ef22c1c478bd3fc2a48389c8, type: 2}
+  - {fileID: 11400000, guid: f0bc7598163cf9b47aae5f60f519b66f, type: 2}
+  - {fileID: 11400000, guid: 96902aa9ee950e24b9a63773f85aaf43, type: 2}
 --- !u!1 &8335418312246590885
 GameObject:
   m_ObjectHideFlags: 0

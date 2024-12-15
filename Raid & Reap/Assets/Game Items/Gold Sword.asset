@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb99a8d824f795b4a8c7c20b9ccc1c15, type: 3}
-  m_Name: LumberAxe
+  m_Script: {fileID: 11500000, guid: fb4486c851c80c74eb54aba5c76b9343, type: 3}
+  m_Name: Gold Sword
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  itemName: LumberAxe
-  itemDescription: 
-  isStackable: 0
+  itemName: Gold Sword
+  weaponDamage: 3
+  toolDamage: 0
+  itemType: 3
+  actionType: 0
+  stackable: 0
+  itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}

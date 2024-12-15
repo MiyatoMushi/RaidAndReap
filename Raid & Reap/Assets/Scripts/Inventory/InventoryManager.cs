@@ -227,13 +227,31 @@ public class InventoryManager : MonoBehaviour
 
     private void UseWeapon(Item weapon)
     {
-        Debug.Log("Using Weapon: " + weapon.itemName);
-
-        // Add weapon-specific logic here (e.g., attacking an enemy)
-        if (weapon.itemName.Contains("Rusty Sword") || weapon.itemName.Contains("Iron Sword") || weapon.itemName.Contains("Gold Sword"))
+        Sword sword =  FindObjectOfType<Sword>();
+        Debug.Log("Using Sword: " + weapon.itemName);
+        StartCoroutine(ButtonCooldown());
+        DisableActionButton();
+        if (sword != null)
         {
-            Debug.Log("Swinging Sword!");
-            // Call your Sword-specific logic here
+            if (weapon.itemName == "Rusty Sword")
+            {
+                sword.UseSword(currentTool.weaponDamage, 1);
+                Debug.Log("Swinging Rusty Sword!");
+            }
+            else if (weapon.itemName == "Iron Sword")
+            {
+                sword.UseSword(currentTool.weaponDamage, 2);
+                Debug.Log("Swinging Iron Sword!");
+            }
+            else if (weapon.itemName == "Gold Sword")
+            {
+                sword.UseSword(currentTool.weaponDamage, 3);
+                Debug.Log("Swinging Gold Sword!");
+            }
+        } 
+        else
+        {
+            Debug.LogWarning("LumberAxe script not found in the scene!");
         }
     }
 

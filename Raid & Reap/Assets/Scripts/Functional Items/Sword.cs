@@ -1,17 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LumberAxe : MonoBehaviour
+public class Sword : MonoBehaviour
 {
-    private PlayerAnimations playerAnimations;
+private PlayerAnimations playerAnimations;
     private PlayerMovement playerMovement;
     private float timeBetweenSwing;
     public float startTimeBetweenSwing;
 
     public Transform swingPositiion;
-    public LayerMask WhatToDestroy;
+    public LayerMask WhatToKill;
     public float swingRange;
-    public int toolDamage;
+    public int weaponDamage;
 
     private bool isSwinging = false; // Prevent spamming
 
@@ -36,21 +37,15 @@ public class LumberAxe : MonoBehaviour
         }
     }
 
-    public void UseLumberAxe(int damage, int axeID)
+    public void UseSword(int damage, int swordID)
     {
         // Only swing if not already swinging and cooldown has expired
         if (!isSwinging && timeBetweenSwing <= 0)
         {
-            
-            Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
-            for (int i = 0; i < treeToDestroy.Length; i++)
-            {
-                treeToDestroy[i].GetComponent<DestroyableObject>().TakeDamage(damage);
-            }
             isSwinging = true; // Block further input
             timeBetweenSwing = startTimeBetweenSwing; // Reset cooldown
 
-            PlayLumberAxeAnimation(axeID);
+            PlaySwordAnimation(swordID);
             playerMovement.DeactivateMovement();
             StartCoroutine(PerformSwing());
         }
@@ -60,28 +55,24 @@ public class LumberAxe : MonoBehaviour
     {
         // Wait for animation or swing delay (synchronized with animation)
         yield return new WaitForSeconds(startTimeBetweenSwing / 2);
-        Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
-        for (int i = 0; i < treeToDestroy.Length; i++)
-        {
-            treeToDestroy[i].GetComponent<DestroyableObject>().IsDestroyed();
-        }
+
         //FindObjectOfType<DestroyableObject>().IsDestroyed();
         playerMovement.ActivateMovement();
         playerAnimations.StopAnimation();
     }
 
-    private void PlayLumberAxeAnimation(int axeID)
+    private void PlaySwordAnimation(int swordID)
     {
-        switch (axeID) 
+        switch (swordID) 
         {
             case 1:
-                playerAnimations.AnimateRustyLumberAxe();
+                playerAnimations.AnimateRustySword();
                 break;
             case 2:
-                playerAnimations.AnimateIronLumberAxe();
+                playerAnimations.AnimateIronSword();
                 break;
             case 3:
-                playerAnimations.AnimateGoldLumberAxe();
+                playerAnimations.AnimateGoldSword();
                 break;
 
         }
@@ -90,7 +81,7 @@ public class LumberAxe : MonoBehaviour
     //Gizmo for player range in tools
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(swingPositiion.position, swingRange);
     }
 }
