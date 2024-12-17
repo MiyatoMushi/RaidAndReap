@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
     QuestManager questManager;
+    public GameObject itemPrefab; // Drop Item Prefab
     public enum EnemyType{
         Boar,
         Slime
@@ -64,6 +65,12 @@ public class EnemyHealth : MonoBehaviour
                 Debug.Log("Unknown enemy type has died.");
                 break;
         }
+        DropItem();
         Destroy(gameObject); // Or handle death logic here
+    }
+
+    void DropItem()
+    {
+        Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
 }

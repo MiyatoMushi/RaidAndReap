@@ -37,3 +37,51 @@ MonoBehaviour:
     stackable: 0
     itemCount: 1
     itemIcon: {fileID: 21300000, guid: 624499e5f18d42844aead5ef69fa2fa4, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}
+  - itemName: Gold Sword
+    weaponDamage: 5
+    toolDamage: 0
+    itemType: Weapon
+    actionType: DamageEnemy
+    stackable: 0
+    itemCount: 1
+    itemIcon: {fileID: 21300000, guid: 6e991a135f26e7f41af630bfafe7d7c6, type: 3}

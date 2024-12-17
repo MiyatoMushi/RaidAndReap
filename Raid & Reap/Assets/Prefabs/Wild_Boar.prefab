@@ -327,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
+  itemPrefab: {fileID: 5289152841756377749, guid: 23d7cfafc2550dd469242f07c0c8d874, type: 3}
   enemyType: 0
 --- !u!114 &4085485624983546243
 MonoBehaviour:

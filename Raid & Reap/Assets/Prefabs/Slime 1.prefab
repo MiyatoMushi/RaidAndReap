@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 756095714067036524}
   - component: {fileID: 1208169862712038129}
   - component: {fileID: 4874122698737618642}
+  - component: {fileID: 688559119506322922}
+  - component: {fileID: 3483126333628085319}
   m_Layer: 0
   m_Name: 'Slime (front view) '
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +113,7 @@ MonoBehaviour:
   detectionRange: 2
   attackRange: 0.4
   animator: {fileID: 756095714067036524}
-  playerHit: {fileID: 0}
+  playerHit: {fileID: 8300000, guid: 412b175af4398b446be8e32292970b55, type: 3}
 --- !u!58 &9047447938245743825
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -259,6 +261,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &688559119506322922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843411376537019988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8688b4685ffd0c84f86a2ffcd167431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  itemPrefab: {fileID: 5289152841756377749, guid: 4a83fb8b9e78e014e88a58f104224009, type: 3}
+  enemyType: 1
+--- !u!114 &3483126333628085319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843411376537019988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3c5dc98e64d634ba3bf4bd2e9a35a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5017950662232690176
 GameObject:
   m_ObjectHideFlags: 0
