@@ -19,6 +19,10 @@ TagManager:
   - InventoryManager
   - QuestManager
   - HitBox
+  - ExteriorHouse
+  - InteriorHouse
+  - InteriorMine
+  - ExteriorMine
   layers:
   - Default
   - TransparentFX
