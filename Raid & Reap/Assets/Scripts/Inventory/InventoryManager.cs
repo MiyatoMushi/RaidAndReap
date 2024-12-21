@@ -150,7 +150,21 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItem(Item item)
     {
-        // Implementation of item removal (if needed)
+        InventoryItemData existingItem = inventoryData.items.Find(i => i.itemName == item.itemName);
+
+        if (existingItem != null)
+        {
+            if (item.stackable && existingItem.itemCount > 1)
+            {
+                // Reduce the count if the item is stackable
+                existingItem.itemCount--;
+            }
+            else
+            {
+                // Remove the item completely if not stackable or count reaches 0
+                inventoryData.items.Remove(existingItem);
+            }
+        }
     }
 
     //Update Buttons based sa item
@@ -197,6 +211,7 @@ public class InventoryManager : MonoBehaviour
     private void UseTool(Item tool)
     {
         LumberAxe lumberAxe =  FindObjectOfType<LumberAxe>();
+        Pickaxe pickaxe = FindObjectOfType<Pickaxe>();
         Debug.Log("Using Tool: " + tool.itemName);
         StartCoroutine(ButtonCooldown());
         DisableActionButton();
@@ -222,6 +237,29 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Debug.LogWarning("LumberAxe script not found in the scene!");
+        }
+
+        if (pickaxe != null)
+        {
+            if (tool.itemName == "Rusty Pickaxe")
+            {
+                pickaxe.UsePickaxe(currentTool.toolDamage, 1);
+                Debug.Log("Swinging Rusty Pickaxe!");
+            }
+            else if (tool.itemName == "Iron Pickaxe")
+            {
+                pickaxe.UsePickaxe(currentTool.toolDamage, 2);
+                Debug.Log("Swinging Iron Pickaxe!");
+            }
+            else if (tool.itemName == "Gold Pickaxe")
+            {
+                pickaxe.UsePickaxe(currentTool.toolDamage, 3);
+                Debug.Log("Swinging Gold Pickaxe!");
+            }
+        } 
+        else
+        {
+            Debug.LogWarning("Pickaxe script not found in the scene!");
         }
     }
 

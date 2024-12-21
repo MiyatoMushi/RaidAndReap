@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 756095714067036524}
   - component: {fileID: 5663080000300680539}
   - component: {fileID: 6758907394952287569}
+  - component: {fileID: 709798008}
   m_Layer: 0
   m_Name: 'Slime (front view) '
   m_TagString: Untagged
@@ -104,14 +105,14 @@ MonoBehaviour:
   speed: 0.5
   startWaitTime: 1.5
   moveSpot: {fileID: 298104061575409569}
-  minX: -6.3
-  maxX: -2.57
-  minY: -4.4
-  maxY: -1.4
+  minX: -5.55
+  maxX: 0.43
+  minY: -8.77
+  maxY: -3.98
   detectionRange: 2
   attackRange: 0.4
   animator: {fileID: 756095714067036524}
-  playerHit: {fileID: 0}
+  playerHit: {fileID: 8300000, guid: 412b175af4398b446be8e32292970b55, type: 3}
 --- !u!58 &9047447938245743825
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,6 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3c5dc98e64d634ba3bf4bd2e9a35a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &709798008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843411376537019988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32166fb14cc73c42b20aa3930489231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 0
+  detectionRange: 5
+  soundClip: {fileID: 8300000, guid: 55536f1bdc3dd6946ad140766363c1c6, type: 3}
 --- !u!1 &5017950662232690176
 GameObject:
   m_ObjectHideFlags: 0

@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 929158941}
   - component: {fileID: 3651603778999383381}
   - component: {fileID: 8145983651543042781}
+  - component: {fileID: 2684783341536145524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -236,7 +237,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   swingRange: 0.5
-  toolDamage: 1
+  toolDamage: 0
 --- !u!114 &3651603778999383381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +271,25 @@ MonoBehaviour:
     m_Bits: 128
   swingRange: 0.6
   weaponDamage: 0
+--- !u!114 &2684783341536145524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984614237830028384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796df75bd507ce94b9b4d670154f563d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeBetweenSwing: 1
+  swingPositiion: {fileID: 984614237705005934}
+  WhatToDestroy:
+    serializedVersion: 2
+    m_Bits: 64
+  swingRange: 0.5
+  toolDamage: 0
 --- !u!1 &7504737582832358014
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Lumber Axe
   m_EditorClassIdentifier: 
   itemName: Iron Lumber Axe
-  weaponDamage: 2
+  weaponDamage: 0
   toolDamage: 2
   itemType: 2
   actionType: 2

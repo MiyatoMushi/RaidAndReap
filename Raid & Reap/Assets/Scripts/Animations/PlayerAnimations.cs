@@ -82,6 +82,37 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    //Pickaxe
+    public void AnimateRustyPickaxe() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("rustyPickaxe", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateIronPickaxe() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("ironPickaxe", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
+    public void AnimateGoldPickaxe() {
+        if (animator != null) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("goldPickaxe", true);
+
+            animator.SetFloat("horizontal", lastDirection.x);
+            animator.SetFloat("vertical", lastDirection.y);
+        }
+    }
+
     //Sword
     public void AnimateRustySword() {
         if (animator != null) {
@@ -120,6 +151,9 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetBool("rustySword", false);
         animator.SetBool("ironSword", false);
         animator.SetBool("goldSword", false);
+        animator.SetBool("rustyPickaxe", false);
+        animator.SetBool("ironPickaxe", false);
+        animator.SetBool("goldPickaxe", false);
     }
 
     /*private void UpdateSprite()

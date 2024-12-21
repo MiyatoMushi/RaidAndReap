@@ -59,7 +59,7 @@ public class LumberAxe : MonoBehaviour
     private IEnumerator PerformSwing()
     {
         // Wait for animation or swing delay (synchronized with animation)
-        yield return new WaitForSeconds(startTimeBetweenSwing / 2);
+        yield return new WaitForSeconds(startTimeBetweenSwing / 1);
         Collider2D[] treeToDestroy = Physics2D.OverlapCircleAll(swingPositiion.position, swingRange, WhatToDestroy);
         for (int i = 0; i < treeToDestroy.Length; i++)
         {

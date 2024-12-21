@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rusty Lumber Axe
   m_EditorClassIdentifier: 
   itemName: Rusty Lumber Axe
-  weaponDamage: 1
+  weaponDamage: 0
   toolDamage: 1
   itemType: 2
   actionType: 2

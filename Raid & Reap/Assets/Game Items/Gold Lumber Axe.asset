@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold Lumber Axe
   m_EditorClassIdentifier: 
   itemName: Gold Lumber Axe
-  weaponDamage: 3
+  weaponDamage: 0
   toolDamage: 3
   itemType: 2
   actionType: 2
